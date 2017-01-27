@@ -49,7 +49,7 @@ higgsToTauTau_collections = higgsCore_collections.copy()
 higgsToTauTau_collections.update({
 
             # put more here
-#            "genJets"         : NTupleCollection("genJet", fourVectorType, 10, help="Generated jets (not cleaned)"),
+            "genJets"         : NTupleCollection("genJet", fourVectorType, 10, help="Generated jets (not cleaned)"),
             "genParticles"     : NTupleCollection("gen",  genParticleWithMotherId, 400, help="all pruned genparticles"), # need to decide which gen collection ?
             "generatorSummary"     : NTupleCollection("genSum",  genParticleWithLinksType, 400, help="all pruned genparticles"),
             #"gentaus"     : NTupleCollection("genTau",  genParticleWithLinksType, 200, help="all pruned genparticles"),

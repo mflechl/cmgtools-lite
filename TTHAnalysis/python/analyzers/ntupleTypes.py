@@ -108,6 +108,7 @@ leptonTypeH = NTupleObjectType("leptonH", baseObjectTypes = [ leptonType ], vari
     NTupleVariable("puChargedHadronIsoR03",           lambda lepton : lepton.puChargedHadronIsoR(0.3),  help= "self.physObj.pfIsolationR03().sumPUPt"),
     NTupleVariable("puChargedHadronIsoR04",           lambda lepton : lepton.puChargedHadronIsoR(0.4),  help= "self.physObj.pfIsolationR03().sumPUPt"),
 
+#    NTupleVariable("Spring16GP",   lambda lepton : lepton.mvaRun2("Spring16GP") if abs(lepton.pdgId()) == 11 else 1, help="EGamma POG MVA ID for non-triggering electrons, Spring15 re-training; 1 for muons"),
     NTupleVariable("mvaIdSpring15NonTrig",   lambda lepton : lepton.mvaRun2("NonTrigSpring15MiniAOD") if abs(lepton.pdgId()) == 11 else 1, help="EGamma POG MVA ID for non-triggering electrons, Spring15 re-training; 1 for muons"),
     NTupleVariable("POG_PHYS14_25ns_v1_Veto",   lambda lepton : lepton.cutBasedId('POG_PHYS14_25ns_v1_Veto') if abs(lepton.pdgId()) == 11 else 1, help="POG Phys14 25ns cut-based v1 Veto ID"),
     NTupleVariable("POG_PHYS14_25ns_v2_Veto",   lambda lepton : lepton.cutBasedId('POG_PHYS14_25ns_v2_Veto') if abs(lepton.pdgId()) == 11 else 1, help="POG Phys14 25ns cut-based v2 Veto ID"),

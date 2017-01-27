@@ -36,7 +36,7 @@ jetAna.recalibrateJets =  True #For data
 jetAna.applyJetSmearing = False                                                                                                                                                        
 
 metAna.recalibrate = False #should be false in susycore, already 
-metAna.isDilepton=True
+metAna.isDilepton=False
 metAna.isTauMu=True
 metAna.isTauEle=False
 
@@ -78,7 +78,7 @@ ttHEventAna = cfg.Analyzer(
 #from CMGTools.TTHAnalysis.samples.samples_13TeV_PHYS14  import *
 #from CMGTools.RootTools.samples.samples_13TeV_74X_privat  import *
 
-TriggerTag = 'HLT'
+TriggerTag = 'HLT2'
 
 triggerFlagsAna.processName = TriggerTag
 triggerFlagsAna.triggerBits = {
@@ -228,7 +228,7 @@ selectedComponents = [ ]
 #     # test files XX-YY of first component                  
 # from CMGTools.RootTools.samples.samples_13TeV_test import *
 # comp = VBF
-# comp.files = ['ewk.root']
+# comp.files = ['sig.root']
 # print comp.files
 # selectedComponents = [comp]
 #     comp.splitFactor = 250
