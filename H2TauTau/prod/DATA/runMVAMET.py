@@ -41,7 +41,7 @@ process.source = datasetToSource(
 
 
 isData=True
-if not hasattr(process, "p"):                                                                                                                      
+maxif not hasattr(process, "p"):                                                                                                                      
          process.p = cms.Path() 
 
 
@@ -51,7 +51,7 @@ process.p *= (process.eventDiLeptonFilter)
 
 from CMGTools.H2TauTau.eventContent.common_cff import common
 
-loadLocalSqlite(process, "Spring16_23Sep2016AllV2_DATA.db", tag = 'JetCorrectorParametersCollection_Spring16_23Sep2016AllV2_DATA_AK4PFchs') 
+loadLocalSqlite(process, "Summer16_23Sep2016AllV3_DATA.db", tag = 'JetCorrectorParametersCollection_Summer16_23Sep2016AllV3_DATA_AK4PFchs') 
 
 recorrectJets(process, isData)
 jetCollection = "patJetsReapplyJEC"

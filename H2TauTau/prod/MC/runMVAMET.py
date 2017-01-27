@@ -51,7 +51,7 @@ process.p *= (process.eventDiLeptonFilter)
 
 from CMGTools.H2TauTau.eventContent.common_cff import common
 
-loadLocalSqlite(process, "Spring16_23Sep2016V2_MC.db", tag = 'JetCorrectorParametersCollection_Spring16_23Sep2016V2_MC_AK4PFchs') 
+loadLocalSqlite(process, "Summer16_23Sep2016V3_MC.db", tag = 'JetCorrectorParametersCollection_Summer16_23Sep2016V3_MC_AK4PFchs') 
 
 recorrectJets(process, isData)
 jetCollection = "patJetsReapplyJEC"
