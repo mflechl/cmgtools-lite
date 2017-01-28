@@ -63,19 +63,19 @@ else:
     coll = "PAT"
 
 ####################  correct MET ###############
-from PhysicsTools.PatUtils.tools.runMETCorrectionsAndUncertainties import runMetCorAndUncFromMiniAOD
-runMetCorAndUncFromMiniAOD(process,
-                           isData = isData)
+# from PhysicsTools.PatUtils.tools.runMETCorrectionsAndUncertainties import runMetCorAndUncFromMiniAOD
+# runMetCorAndUncFromMiniAOD(process,
+#                            isData = isData)
 
-process.selectedVerticesForPFMEtCorrType0.src = cms.InputTag("offlineSlimmedPrimaryVertices")
+# process.selectedVerticesForPFMEtCorrType0.src = cms.InputTag("offlineSlimmedPrimaryVertices")
 
-process.load("RecoMET/METProducers.METSignificance_cfi")
-process.load("RecoMET/METProducers.METSignificanceParams_cfi")
+# process.load("RecoMET/METProducers.METSignificance_cfi")
+# process.load("RecoMET/METProducers.METSignificanceParams_cfi")
 
-process.METCorrSignificance = process.METSignificance.clone(
- srcPfJets = cms.InputTag('patJetsReapplyJEC::MVAMET'),
- srcMet = cms.InputTag('slimmedMETs::MVAMET')
-)
+# process.METCorrSignificance = process.METSignificance.clone(
+#  srcPfJets = cms.InputTag('patJetsReapplyJEC::MVAMET'),
+#  srcMet = cms.InputTag('slimmedMETs::MVAMET')
+# )
 
 #################################################
 

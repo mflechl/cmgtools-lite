@@ -78,8 +78,8 @@ config.Data.inputDataset = dataset
 config.Data.splitting = 'FileBased'
 config.Data.unitsPerJob = 1
 config.Data.totalUnits = -1
-config.Data.publication = True
-#config.Data.publication = False
+#config.Data.publication = True
+config.Data.publication = False
 # This string is used to construct the output dataset name
 config.Data.outputDatasetTag = tag
 #!!!

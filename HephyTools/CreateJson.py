@@ -35,6 +35,10 @@ for data in raw_data:
 		key = key.replace('_TuneCUETP8M1','')
 		key = key.replace('/','').replace('-','_').replace('\n','')
 		key += gen
+		if "ext" in data:
+			key += '_ext' + data.split("_ext")[1].split('-')[0]
+			
+		
 		if 'RunII' in data:
 			prod_label = 'MC{0}'.format(data.split('RunII')[1].split('Mini')[0])
 		else:
