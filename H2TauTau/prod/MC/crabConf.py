@@ -50,7 +50,7 @@ job = DatasetChooser('{0}/src/CMGTools/HephyTools/datasets.json'.format(cmssw_ba
 job.GetOpenJob()
 
 tag = job.strTag
-dataset = job.strDatacard
+dataset = job.strDatacard.replace(' ','')
 prodLabel = job.strProdLabel
 
 print tag
@@ -78,8 +78,7 @@ config.Data.inputDataset = dataset
 config.Data.splitting = 'FileBased'
 config.Data.unitsPerJob = 1
 config.Data.totalUnits = -1
-#config.Data.publication = True
-config.Data.publication = False
+config.Data.publication = True
 # This string is used to construct the output dataset name
 config.Data.outputDatasetTag = tag
 #!!!

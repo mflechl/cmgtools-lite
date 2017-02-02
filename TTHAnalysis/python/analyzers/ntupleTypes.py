@@ -108,7 +108,7 @@ leptonTypeH = NTupleObjectType("leptonH", baseObjectTypes = [ leptonType ], vari
     NTupleVariable("puChargedHadronIsoR03",           lambda lepton : lepton.puChargedHadronIsoR(0.3),  help= "self.physObj.pfIsolationR03().sumPUPt"),
     NTupleVariable("puChargedHadronIsoR04",           lambda lepton : lepton.puChargedHadronIsoR(0.4),  help= "self.physObj.pfIsolationR03().sumPUPt"),
 
-#    NTupleVariable("Spring16GP",   lambda lepton : lepton.mvaRun2("Spring16GP") if abs(lepton.pdgId()) == 11 else 1, help="EGamma POG MVA ID for non-triggering electrons, Spring15 re-training; 1 for muons"),
+    NTupleVariable("Spring16GP",   lambda lepton : lepton.mvaRun2("Spring16GP") if abs(lepton.pdgId()) == 11 else 1, help="EGamma POG MVA ID for non-triggering electrons, Spring15 re-training; 1 for muons"),
     NTupleVariable("mvaIdSpring15NonTrig",   lambda lepton : lepton.mvaRun2("NonTrigSpring15MiniAOD") if abs(lepton.pdgId()) == 11 else 1, help="EGamma POG MVA ID for non-triggering electrons, Spring15 re-training; 1 for muons"),
     NTupleVariable("POG_PHYS14_25ns_v1_Veto",   lambda lepton : lepton.cutBasedId('POG_PHYS14_25ns_v1_Veto') if abs(lepton.pdgId()) == 11 else 1, help="POG Phys14 25ns cut-based v1 Veto ID"),
     NTupleVariable("POG_PHYS14_25ns_v2_Veto",   lambda lepton : lepton.cutBasedId('POG_PHYS14_25ns_v2_Veto') if abs(lepton.pdgId()) == 11 else 1, help="POG Phys14 25ns cut-based v2 Veto ID"),
@@ -135,6 +135,10 @@ leptonTypeH = NTupleObjectType("leptonH", baseObjectTypes = [ leptonType ], vari
     NTupleVariable("eid_loose", lambda x : x.cutBasedId("POG_SPRING15_25ns_v1_Loose") if abs(x.pdgId()) == 11 else 0, int, help="electron loose id"),
     NTupleVariable("eid_medium", lambda x : x.cutBasedId("POG_SPRING15_25ns_v1_Medium") if abs(x.pdgId()) == 11 else 0, int, help="electron medium id"),
     NTupleVariable("eid_tight", lambda x : x.cutBasedId("POG_SPRING15_25ns_v1_Tight") if abs(x.pdgId()) == 11 else 0, int, help="electron tight id"),
+    NTupleVariable("eid16_veto", lambda x : x.cutBasedId("POG_SPRING16_25ns_v1_Veto") if abs(x.pdgId()) == 11 else 0, int, help="electron veto id"),
+    NTupleVariable("eid16_loose", lambda x : x.cutBasedId("POG_SPRING16_25ns_v1_Loose") if abs(x.pdgId()) == 11 else 0, int, help="electron loose id"),
+    NTupleVariable("eid16_medium", lambda x : x.cutBasedId("POG_SPRING16_25ns_v1_Medium") if abs(x.pdgId()) == 11 else 0, int, help="electron medium id"),
+    NTupleVariable("eid16_tight", lambda x : x.cutBasedId("POG_SPRING16_25ns_v1_Tight") if abs(x.pdgId()) == 11 else 0, int, help="electron tight id"),
     
 #    NTupleVariable("eid_test", lambda x : x.cutBasedId("cutBasedElectronID-Summer16-80X-V1-veto") if abs(x.pdgId()) == 11 else 0, int, help="test"),
 
