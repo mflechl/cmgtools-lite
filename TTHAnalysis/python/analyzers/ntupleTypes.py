@@ -179,6 +179,14 @@ tauTypeH = NTupleObjectType("tauH",  baseObjectTypes = [ tauType ], variables = 
     NTupleVariable("byMediumIsolationMVArun2v1DBnewDMwLT",  lambda x : x.tauID("byMediumIsolationMVArun2v1DBnewDMwLT"), int, help="byMediumIsolationMVArun2v1DBnewDMwLT"),
     NTupleVariable("byTightIsolationMVArun2v1DBnewDMwLT",  lambda x : x.tauID("byTightIsolationMVArun2v1DBnewDMwLT"), int, help="byTightIsolationMVArun2v1DBnewDMwLT"),
     NTupleVariable("byVTightIsolationMVArun2v1DBnewDMwLT",  lambda x : x.tauID("byVTightIsolationMVArun2v1DBnewDMwLT"), int, help="byVTightIsolationMVArun2v1DBnewDMwLT"),
+
+    NTupleVariable("NewMVAIDraw",  lambda x : x.NewMVAraw, float, help="NewMVAIDraw"),
+    NTupleVariable("NewMVAIDVLoose",  lambda x : x.NewMVAVLoose, float, help="NewMVAIDVLoose"),
+    NTupleVariable("NewMVAIDLoose",  lambda x : x.NewMVALoose, float, help="NewMVAIDLoose"),
+    NTupleVariable("NewMVAIDMedium",  lambda x : x.NewMVAMedium, float, help="NewMVAIDMedium"),
+    NTupleVariable("NewMVAIDTight",  lambda x : x.NewMVATight, float, help="NewMVAIDTight"),
+    NTupleVariable("NewMVAIDVTight",  lambda x : x.NewMVAVTight, float, help="NewMVAIDVTight"),
+    NTupleVariable("NewMVAIDVVTight",  lambda x : x.NewMVAVVTight, float, help="NewMVAIDVVTight"),
     
     
 

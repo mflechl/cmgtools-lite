@@ -50,6 +50,7 @@ common = [
     'keep *_patPFMetT1SmearJetResUp_*_*',
     'keep *_patPFMetT1Puppi_*_*',
     'keep *_slimmedMETsPuppi_*_*',
+    'keep patPATTauDiscriminator_*_*_*'
 #    'keep *_offlinePrimaryVertices_*_*',
 #    'keep *_selectedPrimaryVertexHighestPtTrackSumForPFMEtCorrType0_*_*',    
 #    'keep patMETs_*_*_*',
