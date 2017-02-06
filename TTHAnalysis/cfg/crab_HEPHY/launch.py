@@ -134,7 +134,7 @@ for comp in selectedComponents:
     #    os.system("python tmp.py > tmp.lis")
     os.system("source /cvmfs/cms.cern.ch/crab3/crab.sh")
     os.system("which crab")
-    os.system("crab submit -c heppy_crab_config_env.py --wait")
+    os.system("crab submit -c heppy_crab_config_env.py")
 
 
 os.system("rm -f python.tar.gz")

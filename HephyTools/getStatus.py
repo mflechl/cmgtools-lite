@@ -156,7 +156,7 @@ def updateInformationFile(paths, RESUB = True):
             FSO.write('\n'.join(info_content))
         
         if len(completed_jobs) > 0:
-            print '{0}\n{1}COMPLETED\n{0}\n{2}'.format('-'*80, ' '*25, '\n'.join(completed_jobs))
+            print '{0}\n{1}COMPLETED\n{0}\n{2}'.format('-'*80, ' '*25, '\n{0}'.format( len(completed_jobs) ) )
         if len(failed_jobs) > 0:
             print '{0}\n{1}FAILED\n{0}\n{2}'.format('-'*80, ' '*25, '\n'.join(failed_jobs))
 
@@ -228,6 +228,8 @@ def getStatus(path):
             else:
                 print line
 
+        if 'Warning' in line:
+            print line
 
     if JCOMP:
       return 'COMPLETED', das_url

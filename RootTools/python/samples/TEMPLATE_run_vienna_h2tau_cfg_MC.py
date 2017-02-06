@@ -27,7 +27,7 @@ jetAna.minLepPt = 10
 jetAna.jetPt = 20
 jetAna.jetEta = 4.7
 
-jetAna.mcGT     = "Spring16_23Sep2016V2_MC"
+jetAna.mcGT     = "Summer16_23Sep2016V3_MC"
 jetAna.dataGT   = "Spring16_23Sep2016BCDV2_DATA"
 jetAna.do_mc_match = True
 jetAna.smearJets = False #should be false in susycore, already                                      
@@ -78,7 +78,7 @@ ttHEventAna = cfg.Analyzer(
 #from CMGTools.TTHAnalysis.samples.samples_13TeV_PHYS14  import *
 #from CMGTools.RootTools.samples.samples_13TeV_74X_privat  import *
 
-TriggerTag = 'HLT2'
+TriggerTag = 'HLT'
 
 triggerFlagsAna.processName = TriggerTag
 triggerFlagsAna.triggerBits = {
