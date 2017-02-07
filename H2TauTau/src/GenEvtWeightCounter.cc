@@ -82,11 +82,12 @@ GenEvtWeightCounter::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
                   << std::endl;
     }
     
-    sumWeights_ += genInfo->weight();
+    sumWeights_ += 1.;
     if (genInfo->weight() > 0.)
         sumUnityWeights_ += 1.;
-    else if (genInfo->weight() < 0.)
+    else if (genInfo->weight() < 0.){
         sumUnityWeights_ += -1.;
+    }
 
     int i = 0;
     
