@@ -7,6 +7,48 @@ from RecoMET.METPUSubtraction.jet_recorrections import loadLocalSqlite, recorrec
 
 #from CMGTools.diLeptonSelector.diLeptonFilter_cfi.py import
 
+####################################################
+from RecoTauTag.RecoTau.TauDiscriminatorTools import noPrediscriminants
+from RecoTauTag.RecoTau.PATTauDiscriminationByMVAIsolationRun2_cff import *
+def addNewTauID(process):
+          process.rerunDiscriminationByIsolationMVArun2v1raw = patDiscriminationByIsolationMVArun2v1raw.clone(
+                   PATTauProducer = cms.InputTag('slimmedTaus'),
+                   Prediscriminants = noPrediscriminants,
+                   loadMVAfromDB = cms.bool(True),
+                   mvaName = cms.string("RecoTauTag_tauIdMVAIsoDBoldDMwLT2016v1"),
+                   mvaOpt = cms.string("DBoldDMwLT"),
+                   requireDecayMode = cms.bool(True),
+                   verbosity = cms.int32(0)
+          )
+          
+          process.rerunDiscriminationByIsolationMVArun2v1VLoose = patDiscriminationByIsolationMVArun2v1VLoose.clone(
+                   PATTauProducer = cms.InputTag('slimmedTaus'),
+                   Prediscriminants = noPrediscriminants,
+                   toMultiplex = cms.InputTag('rerunDiscriminationByIsolationMVArun2v1raw'),
+                   key = cms.InputTag('rerunDiscriminationByIsolationMVArun2v1raw:category'),
+                   loadMVAfromDB = cms.bool(True),
+                   mvaOutput_normalization = cms.string("RecoTauTag_tauIdMVAIsoDBoldDMwLT2016v1_mvaOutput_normalization"),
+                   mapping = cms.VPSet(
+                            cms.PSet(
+                                     category = cms.uint32(0),
+                                     cut = cms.string("RecoTauTag_tauIdMVAIsoDBoldDMwLT2016v1_WPEff90"),
+                                     variable = cms.string("pt"),
+                            )
+                   )
+          )
+             
+          process.rerunDiscriminationByIsolationMVArun2v1Loose = process.rerunDiscriminationByIsolationMVArun2v1VLoose.clone()
+          process.rerunDiscriminationByIsolationMVArun2v1Loose.mapping[0].cut = cms.string("RecoTauTag_tauIdMVAIsoDBoldDMwLT2016v1_WPEff80")
+          process.rerunDiscriminationByIsolationMVArun2v1Medium = process.rerunDiscriminationByIsolationMVArun2v1VLoose.clone()
+          process.rerunDiscriminationByIsolationMVArun2v1Medium.mapping[0].cut = cms.string("RecoTauTag_tauIdMVAIsoDBoldDMwLT2016v1_WPEff70")
+          process.rerunDiscriminationByIsolationMVArun2v1Tight = process.rerunDiscriminationByIsolationMVArun2v1VLoose.clone()
+          process.rerunDiscriminationByIsolationMVArun2v1Tight.mapping[0].cut = cms.string("RecoTauTag_tauIdMVAIsoDBoldDMwLT2016v1_WPEff60")
+          process.rerunDiscriminationByIsolationMVArun2v1VTight = process.rerunDiscriminationByIsolationMVArun2v1VLoose.clone()
+          process.rerunDiscriminationByIsolationMVArun2v1VTight.mapping[0].cut = cms.string("RecoTauTag_tauIdMVAIsoDBoldDMwLT2016v1_WPEff50")
+          process.rerunDiscriminationByIsolationMVArun2v1VVTight = process.rerunDiscriminationByIsolationMVArun2v1VLoose.clone()
+          process.rerunDiscriminationByIsolationMVArun2v1VVTight.mapping[0].cut = cms.string("RecoTauTag_tauIdMVAIsoDBoldDMwLT2016v1_WPEff40")
+####################################################
+
 process = cms.Process("MVAMET")
 #process.maxEvents = cms.untracked.PSet(input=cms.untracked.int32(1000))
 process.maxEvents = cms.untracked.PSet(input=cms.untracked.int32(-1))
@@ -63,20 +105,25 @@ else:
     coll = "PAT"
 
 ####################  correct MET ###############
-# from PhysicsTools.PatUtils.tools.runMETCorrectionsAndUncertainties import runMetCorAndUncFromMiniAOD
-# runMetCorAndUncFromMiniAOD(process,
-#                            isData = isData)
+from PhysicsTools.PatUtils.tools.runMETCorrectionsAndUncertainties import runMetCorAndUncFromMiniAOD
+runMetCorAndUncFromMiniAOD(process,
+                           isData = isData)
 
-# process.selectedVerticesForPFMEtCorrType0.src = cms.InputTag("offlineSlimmedPrimaryVertices")
+process.selectedVerticesForPFMEtCorrType0.src = cms.InputTag("offlineSlimmedPrimaryVertices")
 
-# process.load("RecoMET/METProducers.METSignificance_cfi")
-# process.load("RecoMET/METProducers.METSignificanceParams_cfi")
+process.load("RecoMET/METProducers.METSignificance_cfi")
+process.load("RecoMET/METProducers.METSignificanceParams_cfi")
 
-# process.METCorrSignificance = process.METSignificance.clone(
-#  srcPfJets = cms.InputTag('patJetsReapplyJEC::MVAMET'),
-#  srcMet = cms.InputTag('slimmedMETs::MVAMET')
-# )
+process.METCorrSignificance = process.METSignificance.clone(
+ srcPfJets = cms.InputTag('patJetsReapplyJEC::MVAMET'),
+ srcMet = cms.InputTag('slimmedMETs::MVAMET')
+)
 
+#################################################
+
+################## get new tauIDs ###############
+process.load('RecoTauTag.Configuration.loadRecoTauTagMVAsFromPrepDB_cfi')
+addNewTauID(process)
 #################################################
 
 # runMVAMET( process, jetCollectionPF = jetCollection)
