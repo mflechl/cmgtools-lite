@@ -118,6 +118,9 @@ process.METCorrSignificance = process.METSignificance.clone(
  srcPfJets = cms.InputTag('patJetsReapplyJEC::MVAMET'),
  srcMet = cms.InputTag('slimmedMETs::MVAMET')
 )
+process.p = cms.Path(
+          process.METCorrSignificance
+)
 
 #################################################
 
