@@ -338,8 +338,8 @@ jetAna = cfg.Analyzer(
 
 metAna = cfg.Analyzer(
     METAnalyzer, name="metAnalyzer",
-    metCollection     = "slimmedMETs::PAT",
-    noPUMetCollection = "slimmedMETs::PAT",
+    metCollection     = "slimmedMETs::MVAMET",
+    noPUMetCollection = "slimmedMETs::MVAMET",
     copyMETsByValue = False,
     doTkMet = True,
     doMetNoPU = False,
