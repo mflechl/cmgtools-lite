@@ -58,6 +58,10 @@ higgsCore_globalObjects = {
 #            "diLeptons"          : NTupleCollection("dilepton",     dileptonH, 200, help="system of decay products of the two tau leptons"),
 #}
 
+higgsCore_corrMET = {
+            "corrMET"          : NTupleCollection("corrMET",     corrMetH, 200, help="corr MET"),
+}
+
 higgsCore_collections = {
 #            "genleps"         : NTupleCollection("genLep",     genParticleWithLinksType, 10, help="Generated leptons (e/mu) from W/Z decays"),                                                                                                
 #            "gentauleps"      : NTupleCollection("genLepFromTau", genParticleWithLinksType, 10, help="Generated leptons (e/mu) from decays of taus from W/Z/h decays"),                                                                       

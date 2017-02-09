@@ -42,6 +42,7 @@ common = [
     'keep *_slimmedMETsNoHF_*_*',
     'keep *_patPFMet_*_*',
     'keep *_MVAMET_*_*',
+    'keep *_METSignificance_*_*',
     'keep *_patPFMetT1_*_*',
     'keep *_patPFMetT1JetResDown_*_*',
     'keep *_patPFMetT1JetResUp_*_*',

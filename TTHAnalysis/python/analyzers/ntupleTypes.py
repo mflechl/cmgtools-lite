@@ -259,6 +259,21 @@ dileptonH = NTupleObjectType("dileptonH",  baseObjectTypes = [ fourVectorType ],
 ##  ISOTRACK
 ##------------------------------------------  
 
+
+corrMetH = NTupleObjectType("corrMetH",  baseObjectTypes = [ fourVectorType ], variables = [
+
+    NTupleVariable("met_pt", lambda x : x.pt(), float, help="met pt"),
+    NTupleVariable("met_phi", lambda x : x.phi(), float, help="met phi"),
+    NTupleVariable("metsig00", lambda x : x.getSignificanceMatrix()(0,0), float, help="MET significance matrix(0,0)"),
+    NTupleVariable("metsig01", lambda x : x.getSignificanceMatrix()(0,1), float, help="MET significance matrix(0,1)"),
+    NTupleVariable("metsig10", lambda x : x.getSignificanceMatrix()(1,0), float, help="MET significance matrix(1,0)"),
+    NTupleVariable("metsig11", lambda x : x.getSignificanceMatrix()(1,1), float, help="MET significance matrix(1,1)"),
+
+])
+##------------------------------------------  
+##  ISOTRACK
+##------------------------------------------  
+
 isoTrackTypeSusy = NTupleObjectType("isoTrackSusy",  baseObjectTypes = [ isoTrackType ], variables = [
 ])
 

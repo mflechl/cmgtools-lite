@@ -72,6 +72,8 @@ higgsToTauTau_collections.update({
 #ms            "dilepton"          : NTupleCollection("dilepton",     dileptonH, 1000, help="system of decay products of the two tau leptons"),
 #ms            "LHE_weights"    : NTupleCollection("LHEweight",  weightsInfoType, 1000, mcOnly=True, help="LHE weight info"),
 
+            "corrMET"          : NTupleCollection("corrMET",     corrMetH, 1000, help="corr MET"),
+
             #"met" : NTupleCollection("met", metTypeH, help="PF E_{T}^{miss}, after type 1 corrections"),                             
 
             'TOE_IsoMu18' : NTupleCollection( 'triggerObject_IsoMu18', triggerObjectIsoMu18, 20 , help='trigger objects HLT_IsoMu18_v3'),
