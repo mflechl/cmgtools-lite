@@ -87,10 +87,6 @@ maxif not hasattr(process, "p"):
          process.p = cms.Path() 
 
 
-process.load('CMGTools.diLeptonSelector.diLeptonFilter_cfi')
-process.eventDiLeptonFilter
-process.p *= (process.eventDiLeptonFilter) 
-
 from CMGTools.H2TauTau.eventContent.common_cff import common
 
 loadLocalSqlite(process, "Summer16_23Sep2016AllV3_DATA.db", tag = 'JetCorrectorParametersCollection_Summer16_23Sep2016AllV3_DATA_AK4PFchs') 
@@ -185,6 +181,9 @@ if not isData:
 if numberOfFilesToProcess > 0:
     process.source.fileNames = process.source.fileNames[:numberOfFilesToProcess]
 
+process.load('CMGTools.diLeptonSelector.diLeptonFilter_cfi')
+process.eventDiLeptonFilter
+process.p *= (process.eventDiLeptonFilter) 
 
 if isData:
     json='$CMSSW_BASE/src/CMGTools/RootTools/data/Cert_271036-284044_13TeV_23Sep2016ReReco_Collisions16_JSON.txt'

@@ -76,7 +76,7 @@ process.source = datasetToSource(
     )
 
 #process.source = cms.Source("PoolSource",
-#                             fileNames = cms.untracked.vstring("file:sig.root")
+#                           fileNames = cms.untracked.vstring("file:sig.root")
 #                           fileNames = cms.untracked.vstring("file:localTestFile.root")
 #                           fileNames = cms.untracked.vstring("file:localTestFile_DY.root")
 #                           )
@@ -86,10 +86,6 @@ isData=False
 if not hasattr(process, "p"):                                                                                                                      
          process.p = cms.Path() 
 
-
-process.load('CMGTools.diLeptonSelector.diLeptonFilter_cfi')
-process.eventDiLeptonFilter
-process.p *= (process.eventDiLeptonFilter) 
 
 from CMGTools.H2TauTau.eventContent.common_cff import common
 
@@ -185,6 +181,9 @@ if not isData:
 if numberOfFilesToProcess > 0:
     process.source.fileNames = process.source.fileNames[:numberOfFilesToProcess]
 
+process.load('CMGTools.diLeptonSelector.diLeptonFilter_cfi')
+process.eventDiLeptonFilter
+process.p *= (process.eventDiLeptonFilter) 
 
 ## logger
 process.load('FWCore.MessageLogger.MessageLogger_cfi')
