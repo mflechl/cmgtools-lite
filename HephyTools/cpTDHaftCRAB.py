@@ -214,6 +214,9 @@ class CMCHandler():
             count += nCmd
             print('\r[{0}>{1}]  ( {2}/{3} )'.format('='*int(count),' '*(50-int(count) ), i+1, len(cmd_list) ), end='')
 
+        while done_queue.qsize() > 0:
+            done_queue.get()
+            time.sleep(1)
     def cleanup(self, rtype = 'mc'):
         
         skimfiles = []

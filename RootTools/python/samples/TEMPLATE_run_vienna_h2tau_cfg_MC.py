@@ -27,8 +27,11 @@ jetAna.minLepPt = 10
 jetAna.jetPt = 20
 jetAna.jetEta = 4.7
 
-jetAna.mcGT     = "Summer16_23Sep2016V3_MC"
-jetAna.dataGT   = "Spring16_23Sep2016BCDV2_DATA"
+jetAna.mcGT   = "Summer16_23Sep2016V4_MC"
+# jetAna.dataGT = "Summer16_23Sep2016BCDV4_DATA"
+# jetAna.dataGT = "Summer16_23Sep2016EFV4_DATA"
+# jetAna.dataGT = "Summer16_23Sep2016GV4_DATA"
+# jetAna.dataGT = "Summer16_23Sep2016HV4_DATA"
 jetAna.do_mc_match = True
 jetAna.smearJets = False #should be false in susycore, already                                      
 jetAna.calculateSeparateCorrections = True 
@@ -100,6 +103,7 @@ triggerFlagsAna.triggerBits = {
  "IsoMu19_eta2p1_LooseIsoPFTau20_SingleL1"              : [ ''.join(["HLT_IsoMu19_eta2p1_LooseIsoPFTau20_SingleL1_v",str(i)])  for i in xrange(1,20)],
  "IsoMu19_eta2p1_LooseIsoPFTau2"                        : [ ''.join(["HLT_IsoMu19_eta2p1_LooseIsoPFTau20_v",str(i)])  for i in xrange(1,20)],
  "IsoMu21_eta2p1_LooseIsoPFTau20_SingleL1"              : [ ''.join(["HLT_IsoMu21_eta2p1_LooseIsoPFTau20_SingleL1_v",str(i)])  for i in xrange(1,20)],
+ 
  "Ele23_WPLoose_Gsf"                                    : [ ''.join(["HLT_Ele23_WPLoose_Gsf_v",str(i)])  for i in xrange(1,20)],
  "Ele24_eta2p1_WPLoose_Gsf"                             : [ ''.join(["HLT_Ele24_eta2p1_WPLoose_Gsf_v",str(i)])  for i in xrange(1,20)],
  "Ele25_WPTight_Gsf"                                    : [ ''.join(["HLT_Ele25_WPTight_Gsf_v",str(i)])  for i in xrange(1,20)],
@@ -113,12 +117,16 @@ triggerFlagsAna.triggerBits = {
  "Ele22_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1"    : [ ''.join(["HLT_Ele22_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1_v",str(i)])  for i in xrange(1,20)],
  "Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1"    : [ ''.join(["HLT_Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1_v",str(i)])  for i in xrange(1,20)],
  "Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau20"             : [ ''.join(["HLT_Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_v",str(i)])  for i in xrange(1,20)],
+ "Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau30"             : [ ''.join(["HLT_Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau30_v",str(i)])  for i in xrange(1,20)],
  "Ele27_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1"    : [ ''.join(["HLT_Ele27_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1_v",str(i)])  for i in xrange(1,20)],
  "Ele32_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1"    : [ ''.join(["HLT_Ele32_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1_v",str(i)])  for i in xrange(1,20)],
+ "Ele45_WPLoose_Gsf_L1JetTauSeeded"                     : [ ''.join(["HLT_Ele45_WPLoose_Gsf_L1JetTauSeeded_v",str(i)])  for i in xrange(1,20)],
+
+ "VLooseIsoPFTau140_Trk50_eta2p1"                       : [ ''.join(["HLT_VLooseIsoPFTau140_Trk50_eta2p1_v",str(i)])  for i in xrange(1,20)],
  "DoubleMediumIsoPFTau32_Trk1_eta2p1_Reg"               : [ ''.join(["HLT_DoubleMediumIsoPFTau32_Trk1_eta2p1_Reg_v",str(i)])  for i in xrange(1,20)],
  "DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg"               : [ ''.join(["HLT_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg_v",str(i)])  for i in xrange(1,20)],
- "DoubleMediumIsoPFTau40_Trk1_eta2p1_Reg"               : [ ''.join(["HLT_DoubleMediumIsoPFTau40_Trk1_eta2p1_Reg_v",str(i)])  for i in xrange(1,20)]
-
+ "DoubleMediumIsoPFTau40_Trk1_eta2p1_Reg"               : [ ''.join(["HLT_DoubleMediumIsoPFTau40_Trk1_eta2p1_Reg_v",str(i)])  for i in xrange(1,20)],
+ "DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg"       : [ ''.join(["HLT_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg_v",str(i)])  for i in xrange(1,20)]
 }
 triggerObjsAna.triggerResultsHandle = ('TriggerResults', '', TriggerTag)
 
@@ -139,6 +147,7 @@ triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["IsoMu17_eta2p1_LooseIso
 triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["IsoMu19_eta2p1_LooseIsoPFTau20_SingleL1"]
 triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["IsoMu19_eta2p1_LooseIsoPFTau2"]
 triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["IsoMu21_eta2p1_LooseIsoPFTau20_SingleL1"]
+
 triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["Ele23_WPLoose_Gsf"]
 triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["Ele24_eta2p1_WPLoose_Gsf"]
 triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["Ele25_WPTight_Gsf"]
@@ -152,11 +161,17 @@ triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["Ele32_eta2p1_WPTight_Gs
 triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["Ele22_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1"]
 triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1"]
 triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau20"]
+triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau30"]
 triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["Ele27_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1"]
-triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["Ele32_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1"]
+triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["Ele45_WPLoose_Gsf_L1JetTauSeeded"]
+
+triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["VLooseIsoPFTau140_Trk50_eta2p1"]
 triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["DoubleMediumIsoPFTau32_Trk1_eta2p1_Reg"]
 triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg"]
 triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["DoubleMediumIsoPFTau40_Trk1_eta2p1_Reg"]
+triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg"]
+
+jsonAna.json='$CMSSW_BASE/src/CMGTools/RootTools/data/Cert_271036-284044_13TeV_23Sep2016ReReco_Collisions16_JSON.txt'
 
 # Tree Producer
 from CMGTools.TTHAnalysis.analyzers.treeProducerHiggsToTauTau import *

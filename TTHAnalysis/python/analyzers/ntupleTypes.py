@@ -412,220 +412,248 @@ heavyFlavourHadronType = NTupleObjectType("heavyFlavourHadron", baseObjectTypes 
     
 ])
 
-triggerObjectIsoMu18 = NTupleObjectType("triggerTypeIsoMu18",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectIsoMu20 = NTupleObjectType("triggerTypeIsoMu20",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectIsoMu22 = NTupleObjectType("triggerTypeIsoMu22",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectIsoMu22_eta2p1 = NTupleObjectType("triggerTypeIsoMu22_eta2p1",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectIsoMu24 = NTupleObjectType("triggerTypeIsoMu24",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectIsoMu27 = NTupleObjectType("triggerTypeIsoMu27",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectIsoTkMu18 = NTupleObjectType("triggerTypeIsoTkMu18",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectIsoTkMu20 = NTupleObjectType("triggerTypeIsoTkMu20",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectIsoTkMu22 = NTupleObjectType("triggerTypeIsoTkMu22",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectIsoTkMu22_eta2p1 = NTupleObjectType("triggerTypeIsoTkMu22_eta2p1",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectIsoTkMu24 = NTupleObjectType("triggerTypeIsoTkMu24",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectIsoTkMu27 = NTupleObjectType("triggerTypeIsoTkMu27",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectIsoMu17_eta2p1_LooseIsoPFTau20_SingleL1 = NTupleObjectType("triggerTypeIsoMu17_eta2p1_LooseIsoPFTau20_SingleL1",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectIsoMu17_eta2p1_LooseIsoPFTau20 = NTupleObjectType("triggerTypeIsoMu17_eta2p1_LooseIsoPFTau20",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectIsoMu19_eta2p1_LooseIsoPFTau20_SingleL1 = NTupleObjectType("triggerTypeIsoMu19_eta2p1_LooseIsoPFTau20_SingleL1",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectIsoMu19_eta2p1_LooseIsoPFTau20 = NTupleObjectType("triggerTypeIsoMu19_eta2p1_LooseIsoPFTau20",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectIsoMu21_eta2p1_LooseIsoPFTau20_SingleL1 = NTupleObjectType("triggerTypeIsoMu21_eta2p1_LooseIsoPFTau20_SingleL1",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectEle23_WPLoose_Gsf = NTupleObjectType("triggerTypeEle23_WPLoose_Gsf",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectEle24_eta2p1_WPLoose_Gsf = NTupleObjectType("triggerTypeEle24_eta2p1_WPLoose_Gsf",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectEle25_WPTight_Gsf = NTupleObjectType("triggerTypeEle25_WPTight_Gsf",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectEle25_eta2p1_WPLoose_Gsf = NTupleObjectType("triggerTypeEle25_eta2p1_WPLoose_Gsf",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectEle25_eta2p1_WPTight_Gsf = NTupleObjectType("triggerTypeEle25_eta2p1_WPTight_Gsf",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectEle27_WPLoose_Gsf = NTupleObjectType("triggerTypeEle27_WPLoose_Gsf",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectEle27_WPTight_Gsf = NTupleObjectType("triggerTypeEle27_WPTight_Gsf",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectEle27_eta2p1_WPLoose_Gsf = NTupleObjectType("triggerTypeEle27_eta2p1_WPLoose_Gsf",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectEle27_eta2p1_WPTight_Gsf = NTupleObjectType("triggerTypeEle27_eta2p1_WPTight_Gsf",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectEle32_eta2p1_WPTight_Gsf = NTupleObjectType("triggerTypeEle32_eta2p1_WPTight_Gsf",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectEle22_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1 = NTupleObjectType("triggerTypeEle22_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectEle24_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1 = NTupleObjectType("triggerTypeEle24_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectEle24_eta2p1_WPLoose_Gsf_LooseIsoPFTau20 = NTupleObjectType("triggerTypeEle24_eta2p1_WPLoose_Gsf_LooseIsoPFTau20",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectEle27_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1 = NTupleObjectType("triggerTypeEle27_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectEle32_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1 = NTupleObjectType("triggerTypeEle32_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-triggerObjectDoubleMediumIsoPFTau32_Trk1_eta2p1_Reg = NTupleObjectType("triggerTypeDoubleMediumIsoPFTau32_Trk1_eta2p1_Reg",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
+# triggerObjectIsoMu18 = NTupleObjectType("triggerTypeIsoMu18",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectIsoMu20 = NTupleObjectType("triggerTypeIsoMu20",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectIsoMu22 = NTupleObjectType("triggerTypeIsoMu22",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectIsoMu22_eta2p1 = NTupleObjectType("triggerTypeIsoMu22_eta2p1",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectIsoMu24 = NTupleObjectType("triggerTypeIsoMu24",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectIsoMu27 = NTupleObjectType("triggerTypeIsoMu27",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectIsoTkMu18 = NTupleObjectType("triggerTypeIsoTkMu18",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectIsoTkMu20 = NTupleObjectType("triggerTypeIsoTkMu20",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectIsoTkMu22 = NTupleObjectType("triggerTypeIsoTkMu22",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectIsoTkMu22_eta2p1 = NTupleObjectType("triggerTypeIsoTkMu22_eta2p1",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectIsoTkMu24 = NTupleObjectType("triggerTypeIsoTkMu24",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectIsoTkMu27 = NTupleObjectType("triggerTypeIsoTkMu27",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectIsoMu17_eta2p1_LooseIsoPFTau20_SingleL1 = NTupleObjectType("triggerTypeIsoMu17_eta2p1_LooseIsoPFTau20_SingleL1",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectIsoMu17_eta2p1_LooseIsoPFTau20 = NTupleObjectType("triggerTypeIsoMu17_eta2p1_LooseIsoPFTau20",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectIsoMu19_eta2p1_LooseIsoPFTau20_SingleL1 = NTupleObjectType("triggerTypeIsoMu19_eta2p1_LooseIsoPFTau20_SingleL1",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectIsoMu19_eta2p1_LooseIsoPFTau20 = NTupleObjectType("triggerTypeIsoMu19_eta2p1_LooseIsoPFTau20",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectIsoMu21_eta2p1_LooseIsoPFTau20_SingleL1 = NTupleObjectType("triggerTypeIsoMu21_eta2p1_LooseIsoPFTau20_SingleL1",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectEle23_WPLoose_Gsf = NTupleObjectType("triggerTypeEle23_WPLoose_Gsf",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectEle24_eta2p1_WPLoose_Gsf = NTupleObjectType("triggerTypeEle24_eta2p1_WPLoose_Gsf",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectEle25_WPTight_Gsf = NTupleObjectType("triggerTypeEle25_WPTight_Gsf",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectEle25_eta2p1_WPLoose_Gsf = NTupleObjectType("triggerTypeEle25_eta2p1_WPLoose_Gsf",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectEle25_eta2p1_WPTight_Gsf = NTupleObjectType("triggerTypeEle25_eta2p1_WPTight_Gsf",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectEle27_WPLoose_Gsf = NTupleObjectType("triggerTypeEle27_WPLoose_Gsf",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectEle27_WPTight_Gsf = NTupleObjectType("triggerTypeEle27_WPTight_Gsf",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectEle27_eta2p1_WPLoose_Gsf = NTupleObjectType("triggerTypeEle27_eta2p1_WPLoose_Gsf",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectEle27_eta2p1_WPTight_Gsf = NTupleObjectType("triggerTypeEle27_eta2p1_WPTight_Gsf",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectEle32_eta2p1_WPTight_Gsf = NTupleObjectType("triggerTypeEle32_eta2p1_WPTight_Gsf",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectEle22_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1 = NTupleObjectType("triggerTypeEle22_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectEle24_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1 = NTupleObjectType("triggerTypeEle24_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectEle24_eta2p1_WPLoose_Gsf_LooseIsoPFTau20 = NTupleObjectType("triggerTypeEle24_eta2p1_WPLoose_Gsf_LooseIsoPFTau20",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectEle24_eta2p1_WPLoose_Gsf_LooseIsoPFTau30 = NTupleObjectType("triggerTypeEle24_eta2p1_WPLoose_Gsf_LooseIsoPFTau30",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectEle27_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1 = NTupleObjectType("triggerTypeEle27_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+# triggerObjectEle32_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1 = NTupleObjectType("triggerTypeEle32_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
 
-triggerObjectDoubleMediumIsoPFTau35_Trk1_eta2p1_Reg = NTupleObjectType("triggerTypeDoubleMediumIsoPFTau35_Trk1_eta2p1_Reg",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
-
-triggerObjectDoubleMediumIsoPFTau40_Trk1_eta2p1_Reg = NTupleObjectType("triggerTypeDoubleMediumIsoPFTau40_Trk1_eta2p1_Reg",   baseObjectTypes = [  ], variables = [
-        NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
-        NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
-        NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
-        NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
-])
+# triggerObjectEle45_WPLoose_Gsf_L1JetTauSeeded = NTupleObjectType("triggerTypeEle45_WPLoose_Gsf_L1JetTauSeeded",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
 
 
+
+# triggerObjectVLooseIsoPFTau140_Trk50_eta2p1 = NTupleObjectType("triggerTypeVLooseIsoPFTau140_Trk50_eta2p1",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+
+# triggerObjectDoubleMediumIsoPFTau32_Trk1_eta2p1_Reg = NTupleObjectType("triggerTypeDoubleMediumIsoPFTau32_Trk1_eta2p1_Reg",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+
+# triggerObjectDoubleMediumIsoPFTau35_Trk1_eta2p1_Reg = NTupleObjectType("triggerTypeDoubleMediumIsoPFTau35_Trk1_eta2p1_Reg",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+
+# triggerObjectDoubleMediumIsoPFTau40_Trk1_eta2p1_Reg = NTupleObjectType("triggerTypeDoubleMediumIsoPFTau40_Trk1_eta2p1_Reg",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
+
+# triggerObjectDoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg = NTupleObjectType("triggerTypeDoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg",   baseObjectTypes = [  ], variables = [
+#         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
+#         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),
+#         NTupleVariable("pdgId", lambda x : x.pdgId(), float, mcOnly=False, help="pdgId of trigger object"),
+#         NTupleVariable("pt", lambda x : x.pt(), float, mcOnly=False, help="pt of trigger object"),
+# ])
 
 # triggerObjectIsoMu17 = NTupleObjectType("triggerTypeIsoMu17",   baseObjectTypes = [  ], variables = [
 #         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),

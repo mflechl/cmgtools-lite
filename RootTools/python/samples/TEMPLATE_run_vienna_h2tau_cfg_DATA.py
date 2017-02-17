@@ -1,9 +1,9 @@
-#########################################################
+##########################################################
 ##       CONFIGURATION FOR Higgs->tautau TREES          ##
 ## skim condition: >= 0 loose leptons, no pt cuts or id ##
 ##########################################################
 import PhysicsTools.HeppyCore.framework.config as cfg
-from PhysicsTools.HeppyCore.framework.heppy_loop import getHeppyOption
+
 
 #Load all analyzers
 from CMGTools.TTHAnalysis.analyzers.higgsCore_modules_cff import * 
@@ -27,16 +27,20 @@ jetAna.minLepPt = 10
 jetAna.jetPt = 20
 jetAna.jetEta = 4.7
 
-jetAna.mcGT     = "Spring16_23Sep2016V2_MC"
-jetAna.dataGT   = "Spring16_23Sep2016BCDV2_DATA"
-jetAna.do_mc_match = False                                    
+# jetAna.mcGT   = "Summer16_23Sep2016V4_MC"
+# jetAna.dataGT = "Summer16_23Sep2016BCDV4_DATA"
+# jetAna.dataGT = "Summer16_23Sep2016EFV4_DATA"
+# jetAna.dataGT = "Summer16_23Sep2016GV4_DATA"
+jetAna.dataGT = "Summer16_23Sep2016HV4_DATA"
+jetAna.do_mc_match = False
+jetAna.smearJets = False #should be false in susycore, already                                      
 jetAna.calculateSeparateCorrections = True 
 jetAna.recalibrateJets =  True #For data  
 jetAna.applyJetSmearing = False                                                                                                                                                        
 
 metAna.recalibrate = False #should be false in susycore, already 
-metAna.isDilepton=True
-metAna.isTauMu=False
+metAna.isDilepton=False
+metAna.isTauMu=True
 metAna.isTauEle=False
 
 # --- LEPTON SKIMMING ---
@@ -58,14 +62,25 @@ metAna.isTauEle=False
 #ttHReclusterJets = cfg.Analyzer(
 #    ttHReclusterJetsAnalyzer, name="ttHReclusterJetsAnalyzer",
 #    )
-# from CMGTools.TTHAnalysis.analyzers.ttHLepEventAnalyzer import ttHLepEventAnalyzer
-# ttHEventAna = cfg.Analyzer(
-#     ttHLepEventAnalyzer,
-#     name="ttHLepEventAnalyzer",
-#     minJets25 = 0,
-#     )
+from CMGTools.TTHAnalysis.analyzers.ttHLepEventAnalyzer import ttHLepEventAnalyzer
+ttHEventAna = cfg.Analyzer(
+    ttHLepEventAnalyzer, name="ttHLepEventAnalyzer",
+    minJets25 = 0,
+    )
 
-# Tree Producer
+## Insert the SV analyzer in the sequence
+#higgsCoreSequence.insert(higgsCoreSequence.index(ttHCoreEventAna),
+#                        ttHFatJetAna)
+#higgsCoreSequence.insert(higgsCoreSequence.index(ttHCoreEventAna),
+#                        ttHSVAna)
+#higgsCoreSequence.insert(higgsCoreSequence.index(ttHCoreEventAna),
+#                        ttHHeavyFlavourHadronAna)
+
+
+
+#from CMGTools.TTHAnalysis.samples.samples_13TeV_PHYS14  import *
+#from CMGTools.RootTools.samples.samples_13TeV_74X_privat  import *
+
 TriggerTag = 'HLT'
 
 triggerFlagsAna.processName = TriggerTag
@@ -88,6 +103,7 @@ triggerFlagsAna.triggerBits = {
  "IsoMu19_eta2p1_LooseIsoPFTau20_SingleL1"              : [ ''.join(["HLT_IsoMu19_eta2p1_LooseIsoPFTau20_SingleL1_v",str(i)])  for i in xrange(1,20)],
  "IsoMu19_eta2p1_LooseIsoPFTau2"                        : [ ''.join(["HLT_IsoMu19_eta2p1_LooseIsoPFTau20_v",str(i)])  for i in xrange(1,20)],
  "IsoMu21_eta2p1_LooseIsoPFTau20_SingleL1"              : [ ''.join(["HLT_IsoMu21_eta2p1_LooseIsoPFTau20_SingleL1_v",str(i)])  for i in xrange(1,20)],
+ 
  "Ele23_WPLoose_Gsf"                                    : [ ''.join(["HLT_Ele23_WPLoose_Gsf_v",str(i)])  for i in xrange(1,20)],
  "Ele24_eta2p1_WPLoose_Gsf"                             : [ ''.join(["HLT_Ele24_eta2p1_WPLoose_Gsf_v",str(i)])  for i in xrange(1,20)],
  "Ele25_WPTight_Gsf"                                    : [ ''.join(["HLT_Ele25_WPTight_Gsf_v",str(i)])  for i in xrange(1,20)],
@@ -101,12 +117,16 @@ triggerFlagsAna.triggerBits = {
  "Ele22_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1"    : [ ''.join(["HLT_Ele22_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1_v",str(i)])  for i in xrange(1,20)],
  "Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1"    : [ ''.join(["HLT_Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1_v",str(i)])  for i in xrange(1,20)],
  "Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau20"             : [ ''.join(["HLT_Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_v",str(i)])  for i in xrange(1,20)],
+ "Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau30"             : [ ''.join(["HLT_Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau30_v",str(i)])  for i in xrange(1,20)],
  "Ele27_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1"    : [ ''.join(["HLT_Ele27_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1_v",str(i)])  for i in xrange(1,20)],
  "Ele32_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1"    : [ ''.join(["HLT_Ele32_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1_v",str(i)])  for i in xrange(1,20)],
+ "Ele45_WPLoose_Gsf_L1JetTauSeeded"                     : [ ''.join(["HLT_Ele45_WPLoose_Gsf_L1JetTauSeeded_v",str(i)])  for i in xrange(1,20)],
+
+ "VLooseIsoPFTau140_Trk50_eta2p1"                       : [ ''.join(["HLT_VLooseIsoPFTau140_Trk50_eta2p1_v",str(i)])  for i in xrange(1,20)],
  "DoubleMediumIsoPFTau32_Trk1_eta2p1_Reg"               : [ ''.join(["HLT_DoubleMediumIsoPFTau32_Trk1_eta2p1_Reg_v",str(i)])  for i in xrange(1,20)],
  "DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg"               : [ ''.join(["HLT_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg_v",str(i)])  for i in xrange(1,20)],
- "DoubleMediumIsoPFTau40_Trk1_eta2p1_Reg"               : [ ''.join(["HLT_DoubleMediumIsoPFTau40_Trk1_eta2p1_Reg_v",str(i)])  for i in xrange(1,20)]
-
+ "DoubleMediumIsoPFTau40_Trk1_eta2p1_Reg"               : [ ''.join(["HLT_DoubleMediumIsoPFTau40_Trk1_eta2p1_Reg_v",str(i)])  for i in xrange(1,20)],
+ "DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg"       : [ ''.join(["HLT_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg_v",str(i)])  for i in xrange(1,20)]
 }
 triggerObjsAna.triggerResultsHandle = ('TriggerResults', '', TriggerTag)
 
@@ -127,6 +147,7 @@ triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["IsoMu17_eta2p1_LooseIso
 triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["IsoMu19_eta2p1_LooseIsoPFTau20_SingleL1"]
 triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["IsoMu19_eta2p1_LooseIsoPFTau2"]
 triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["IsoMu21_eta2p1_LooseIsoPFTau20_SingleL1"]
+
 triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["Ele23_WPLoose_Gsf"]
 triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["Ele24_eta2p1_WPLoose_Gsf"]
 triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["Ele25_WPTight_Gsf"]
@@ -140,20 +161,23 @@ triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["Ele32_eta2p1_WPTight_Gs
 triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["Ele22_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1"]
 triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1"]
 triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau20"]
+triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau30"]
 triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["Ele27_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1"]
-triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["Ele32_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1"]
+triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["Ele45_WPLoose_Gsf_L1JetTauSeeded"]
+
+triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["VLooseIsoPFTau140_Trk50_eta2p1"]
 triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["DoubleMediumIsoPFTau32_Trk1_eta2p1_Reg"]
 triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg"]
 triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["DoubleMediumIsoPFTau40_Trk1_eta2p1_Reg"]
+triggerObjsAna.extraTrig += triggerFlagsAna.triggerBits["DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg"]
 
-jsonAna.json='$CMSSW_BASE/src/CMGTools/RootTools/data/Cert_271036-280385_13TeV_PromptReco_Collisions16_JSON.txt' #RunG 
-#jsonAna.json='$CMSSW_BASE/src/CMGTools/RootTools/data/Cert_271036-276811_13TeV_PromptReco_Collisions16_JSON.txt'
+jsonAna.json='$CMSSW_BASE/src/CMGTools/RootTools/data/Cert_271036-284044_13TeV_23Sep2016ReReco_Collisions16_JSON.txt'
 
+# Tree Producer
 from CMGTools.TTHAnalysis.analyzers.treeProducerHiggsToTauTau import *
 ## Tree Producer
 treeProducer = cfg.Analyzer(
-     AutoFillTreeProducer,
-     name='treeProducerHiggsToTauTau',
+     AutoFillTreeProducer, name='treeProducerHiggsToTauTau',
      vectorTree = True,
      saveTLorentzVectors = False,  # can set to True to get also the TLorentzVectors, but trees will be bigger
      PDFWeights = PDFWeights,
@@ -167,10 +191,19 @@ treeProducer = cfg.Analyzer(
 
 #-------- SAMPLES AND TRIGGERS -----------
 
-
 #from CMGTools.TTHAnalysis.samples.samples_13TeV_PHYS14 import *
-#if getHeppyOption("loadSamples"):
 
+
+#print "Working"
+
+#selectedComponents = [ SingleMu, DoubleElectron, TTHToWW_PUS14, DYJetsToLL_M50_PU20bx25, TTJets_PUS14 ]
+#TTJets.splitFactor = 1000
+#selectedComponents = [TTJets]
+
+#selectedComponents = [QCD_HT_1000ToInf, QCD_HT_250To500, QCD_HT_500To1000, SMS_T1tttt_2J_mGl1200_mLSP800, SMS_T1tttt_2J_mGl1500_mLSP100, SMS_T2tt_2J_mStop425_mLSP325, SMS_T2tt_2J_mStop500_mLSP325, SMS_T2tt_2J_mStop650_mLSP325, SMS_T2tt_2J_mStop850_mLSP100, TBarToLeptons_sch, TBarToLeptons_tch, TBar_tWch, TTH, TTWJets, TTZJets, TToLeptons_sch, TToLeptons_tch, T_tWch]
+#selectedComponents =WJetsToLNuHT +  [WJetsToLNu]  
+##selectedComponents = DYJetsM50HT
+##selectedComponents = MySamples 
 #-------- SEQUENCE
 
 #selectedComponents = HiggsSignalSamples
@@ -183,23 +216,54 @@ sequence = cfg.Sequence(
     ])
 
 
+#-------- HOW TO RUN
+#test = 0
+#selectedComponents = [ QCD_Pt_20toInf_MuEnriched15, QCD_Pt_20to30_MuEnrichedPt5, QCD_Pt_30to50_MuEnrichedPt5, QCD_Pt_50to80_MuEnrichedPt5, QCD_Pt_80to120_MuEnrichedPt5, QCD_Pt_120to170_MuEnrichedPt5, QCD_Pt_170to300_MuEnrichedPt5, QCD_Pt_300to470_MuEnrichedPt5 ]
+#selectedComponents = [ TT_Fall2015_mt_160208 ]
 
-selectedComponents = []   
+#selectedComponents = [ DYJets_Fall2015_newMVAMet_160317 ]
 
+selectedComponents = [ ]
+#selectedComponents = [ DYJets_Fall2015_nlo_wo1step ]
+
+#selectedComponents = [ DYJets_Fall2015_mt_amcatnloFXFX_160223_wo1step ]
+
+
+# test = 3
+# if test==1:
+#     # test files XX-YY of first component                  
+#     comp = XX_DSNAME_XX
+#     comp.files = ['root://hephyse.oeaw.ac.at//dpm/oeaw.ac.at/home/cms/store/user/jbrandst/SUSYGluGluToHToTauTau_M-160_TuneCUETP8M1_13TeV-pythia8/SUSYGluGlu_miniAOD2_tauMu_151218/151218_143318/0000/tauMu_fullsel_tree_CMG_1.root']
+#     print comp.files
+#     selectedComponents = [comp]
+#     comp.splitFactor = 250
+#     comp.puFileData = 'MyDataPileupHistogram_observed_new.root'
+#     comp.puFileMC = 'MyMCPileupHistogram_normOfficial.root'
+# elif test==2:    
+#     # test files XX-YY of first component                  
 # from CMGTools.RootTools.samples.samples_13TeV_test import *
 # comp = data
-# comp.files = ['root://hephyse.oeaw.ac.at//dpm/oeaw.ac.at/home/cms/store/user/mspanrin/SingleMuon/SingleMuonRun2016D_23Sep2016_v1MINIAOD_DATA_161224/161223_232641/0000/outfile_newMVA_967.root']
+# comp.files = ['root://cms-xrd-global.cern.ch//store/user/jbrandst/Tau/TauRun2016H_PromptReco_v2MINIAOD_DATA_170213/170213_143007/0000/outfile_newMVA_102.root']
 # print comp.files
 # selectedComponents = [comp]
-# comp.splitFactor = 250
-# selectedComponents = [comp]
+#     comp.splitFactor = 250
+#     comp.puFileData = '../MyDataPileupHistogram_observed_new.root'
+#     comp.puFileMC = '../MyMCPileupHistogram_normOfficial.root'
+# elif test==3:
+#     # test files XX-YY of first component
+#     #comp = SUSYGluGlu_mt_160203
+#     #comp = TT_Fall2015_mt_160208
+#     for comp in selectedComponents:
+#         comp.isMC=1
+#         comp.isData=0
+#         comp.splitFactor = 2500
+#         comp.files = comp.files[:]
+#         #selectedComponents = [comp]
+#         comp.puFileData = "$CMSSW_BASE/src/CMGTools/RootTools/data/MyDataPileupHistogram_observed_new.root"
+#         comp.puFileMC = "$CMSSW_BASE/src/CMGTools/RootTools/data/MyMCPileupHistogram_normOfficial.root"    
 
 from PhysicsTools.HeppyCore.framework.eventsfwlite import Events
-
 config = cfg.Config( components = selectedComponents,
                      sequence = sequence,
                      services = [],
                      events_class = Events)
-
-
-

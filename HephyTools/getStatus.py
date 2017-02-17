@@ -1,271 +1,315 @@
 import os
 import sys
-import argparse
 import time
 import json
+import argparse
+import ROOT
+import das_client 
 from subprocess import Popen, PIPE
 
 
-def colorprint(string, color):
-    if color is 'red':
-        if ':' in string:
-            print string.split(':')[0]+ ':' + '\033[91m' + string.split(':')[1] + '\033[0m'
-        else:
-            print '\033[91m' + string+ '\033[0m'
-    elif color is 'yellow':
-        if ':' in string:
-            print string.split(':')[0]+':'+ '\033[93m' + string.split(':')[1] + '\033[0m'
-        else:
-            print '\033[93m' + string+ '\033[0m'
 
-    elif color is 'green':
-        if ':' in string:
-            print string.split(':')[0]+':'+ '\033[92m' + string.split(':')[1] + '\033[0m'
-        else:
-            print '\033[92m' + string+ '\033[0m'
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--ptime',dest='ptime', help='Time between two status checks.', type=int, metavar = 'INT',default=3000)
+    parser.add_argument('--nrep',dest='rep', help='Number of status checks.', type=int, metavar = 'INT',default=1)
+    parser.add_argument('--resubmit',dest='resubmit', help='Resubmit all failed jobs.', action='store_true')
+    parser.add_argument('--show_completed',dest='show_completed', help='Show list of completed jobs at end of status report.', action='store_true')
+    parser.add_argument('--force',dest='force', help='Force resubmit finished jobs. Need to give SAMPLE and JOBIDS', action='store_true')
+    parser.add_argument('--jobids',dest='jobids', help='Jobs to force resubmit', type=str, default = '')
+    parser.add_argument('--add_das',dest='add_das', help='Add DAS URL for SAMPLE', action='store_true')
+    parser.add_argument('--sample',dest='sample', help='SAMPLE name for force resubmit or adding das url', type=str, default = '')
+    parser.add_argument('--validate',dest='validate', help='Valiate samples on DAS', action='store_true' )
 
-    else: print string
-def getCrabFolders(paths):
+    args = parser.parse_args()
+    SR = StatusReport(resubmit=args.resubmit, show_completed=args.show_completed)
+    
 
-    crab_folders = []
-    for path in paths:
-        if os.path.exists(path):
-            if os.path.isdir( path ):
-                for folder in os.listdir(path):
-                    if os.path.isdir( '/'.join([ path, folder ]) ) and 'crab_' in folder:
+    if args.force:
+        if args.jobids == '' or args.sample == '':
+            print "Need to specify jobids and sample name when running force resubmit. Aborting..."
+            sys.exit()
 
-                        crab_folders.append( '/'.join([ path, folder ]) )
-    return crab_folders
+        SR.resubmitJob(args.sample, args.jobids)
 
-def readInformationFile():
-    if not os.path.exists('job_information.dat'):
-        open('job_information.dat','a').close()
-        return []  
-    else:
-        with open('job_information.dat','r') as FSO:
-            info_content = FSO.read().splitlines()
-        return info_content
+    elif args.add_das:
+        if args.sample == '':
+            print "Need to specify sample name when adding DAS URL. Aborting..."
+            sys.exit()
 
-def addInformation(folders, information):
-    add_folder =[]
-    for folder in folders:
-        exists = False
-        for info in information:
-            if folder in info:
-                exists = True
-        if not exists:
-            add_folder.append( folder )
+        SR.writeDASurl(args.sample)
 
-    for folder in add_folder:
-        information.append( ';{0};0;0'.format(folder) )
+    elif args.validate:
+        SR.validatePublicSamples()
 
-    return information
+    elif not args.add_das and not args.force:
+        if args.resubmit and args.rep > 1:
+            print 'Resubmiting jobs every {0}sec {1} time(s).'.format(args.ptime, args.rep)
 
-def removeInformation(folders, information):
-    for i,info in enumerate(information):
-        exists = False
-        for folder in folders:
-            if folder in info:
-                exists = True
-        if not exists:
-            information.pop(i)
-    return information
-
-def writeDASurl(tag,das_url):
-
-    with open('datasets.json' ,'rb') as FSO:
-        dsets=json.load(FSO)
-
-    for sets in dsets.keys():
-        for el in dsets[sets].keys():
-            if el in tag:
-                dsets[sets][el]['das_url'] = das_url
-
-    with open('datasets.json' ,'wb') as FSO:
-        json.dump(dsets, FSO,indent=4)
-
-
-
-def updateInformationFile(paths, RESUB = True):
-    crab_folders = getCrabFolders(paths)
-    info_content = readInformationFile()
-    if info_content == []:
-        for folder in crab_folders:
-            info_content.append( ';{0};0;0'.format(folder) )
-
-        with open('job_information.dat','w') as FSO:
-            FSO.write( '\n'.join(info_content) )
-
-    else:
-        
-        info_content = addInformation(crab_folders, info_content)
-        info_content = removeInformation(crab_folders, info_content)
-
-        print '{0}\n{1}RUNNING'.format( '-'*80, ' '*25 )
-
-        completed_jobs = []
-        failed_jobs = []
-        for i,info in enumerate(info_content):
-
-            if info != '':
-                splInfo = info.split(';')
-                job_name = splInfo[1].split('/')[-1].replace('crab_','')
-            else:
-                continue
-
-            if splInfo[0] == 'COMPLETED':
-                completed_jobs.append( job_name )
-
-            elif splInfo[0] == 'FAILED':
-                failed_jobs.append( job_name )
-
-            else:
-                status, das_url = getStatus( splInfo[1] )
-                if status == 'COMPLETED':
-                    splInfo[0] = 'COMPLETED'
-                    completed_jobs.append( job_name  )
-                    if das_url != '':
-                        writeDASurl(job_name, das_url)
-                    info_content[i] = ';'.join(splInfo)
-
-                elif status == 'RESUBMIT':
-                    if int(splInfo[2]) > 20:
-                        splInfo[0] = 'FAILED'
-                        failed_jobs.append( job_name )
-                        info_content[i] = ';'.join(splInfo)
-                    else:
-                        if RESUB:
-                            resubmitJob( splInfo[1] )
-                            splInfo[2] = str( int(splInfo[2]) +1 )
-                            info_content[i] = ';'.join(splInfo)
-                            print 'resubmitting failed jobs'
-
-                elif status == 'PUBLICATE':
-                    if int(splInfo[3]) > 20:
-                        splInfo[0] = 'FAILED'
-                        failed_jobs.append( job_name )
-                        info_content[i] = ';'.join(splInfo)
-                    else:
-                        if RESUB:
-                            resubmitPublication( splInfo[1] )
-                            splInfo[3] = str( int(splInfo[3]) +1 )
-                            info_content[i] = ';'.join(splInfo)
-                            print 'publishing missing files'
-   
-        with open('job_information.dat','w') as FSO:
-            FSO.write('\n'.join(info_content))
-        
-        if len(completed_jobs) > 0:
-            print '{0}\n{1}COMPLETED\n{0}\n{2}'.format('-'*80, ' '*25, '\n'.join( completed_jobs ) )
-        if len(failed_jobs) > 0:
-            print '{0}\n{1}FAILED\n{0}\n{2}'.format('-'*80, ' '*25, '\n'.join(failed_jobs))
+        for i in xrange(args.rep):
+            SR.getStatusAll()
+            if args.rep > 1 and i != args.rep-1:
+                time.sleep(args.ptime)
 
 
 
 
-def resubmitJob(path):
-            proc = Popen('crab resubmit {0}'.format( path ),stdout = PIPE, shell=True)
-            (out, err) = proc.communicate()
+class StatusReport():
+    def __init__(self,resubmit = False, show_completed = False):
+        self.base = '/'.join([os.environ['CMSSW_BASE'], 'src', 'CMGTools' ])
+        self.status_report = {}
+        self.completed_jobs = []
+        self.total_finished = 0
+        self.show_completed = show_completed
+        self.resubmit = resubmit
+        self.getRunFolders()
+        self.getStatusReport()
 
-def resubmitPublication(path):
-            proc = Popen('crab resubmit {0} --publication'.format( path ),stdout = PIPE, shell=True)
-            (out, err) = proc.communicate()
+    def __del__(self):
+        with open( '/'.join([self.base,'HephyTools', 'status_report.json']),'w' ) as FSO:
+            json.dump(self.status_report, FSO, indent=4)
 
-def getStatus(path):
+        if self.show_completed:
+            if self.completed_jobs != []:
+                print '{0}\n{1}COMPLETED\n{0}\n{2}'.format('-'*80, ' '*32, '\n'.join( self.completed_jobs ) )
 
-    proc = Popen('crab status {0}'.format( path ),stdout = PIPE, shell=True)
-    (out, err) = proc.communicate()
-    print '{0}\n{1}'.format('-'*80, path.split('/')[-1].replace('crab_','') )
-    JOBS = False
-    PUBL = False
-    JFAIL = False
-    PFAIL = False
-    JCOMP = False
-    das_url = ''
+        elif len(self.completed_jobs) > 0:
+            print '{0} Jobs completed'.format( len(self.completed_jobs) )
 
-    for line in out.split('\n'):
-        
-        if 'DAS URL' in line:
-            das_url = line.replace('%2F','/').split('input=')[1].split('&instance')[0]
+        if self.total_finished > 0:
+            print '\n\n','Total finished jobs this round: {0}'.format(self.total_finished)
+
+    def getStatusReport(self):
+        if os.path.exists( '/'.join([self.base,'HephyTools', 'status_report.json'])):
+            with open( '/'.join([self.base,'HephyTools', 'status_report.json']),'r' ) as FSO:
+                data = json.load(FSO)
+            for sample in data.keys():
+                if self.status_report.has_key(sample):
+                    self.status_report[sample] = data[sample]
+                    self.status_report[sample]['validated'] = False
+
+    def getRunFolders(self):
+
+        run_folders = ['H2TauTau/prod/MC', 'H2TauTau/prod/DATA', 'TTHAnalysis/cfg/crab_HEPHY/']
+
+        for run_folder in run_folders:
+            for folder in os.listdir('/'.join([ self.base, run_folder ])  ):
+                if 'crab_' in folder and os.path.isdir( '/'.join([ self.base, run_folder, folder ]) ):
+                    for sample in os.listdir( '/'.join([ self.base, run_folder, folder ]) ):
+                        if 'crab_' in sample and os.path.isdir( '/'.join([ self.base, run_folder, folder, sample ]) ):
+                            if not self.status_report.has_key(sample.replace('crab_','')):
+                                self.status_report[sample.replace('crab_','')] =  {'path':'/'.join([ self.base, run_folder, folder, sample ]), 'status': 'RUNNING', 'das_url': '','finished':0, 'validated':False}
+
+
+    def getStatusAll(self):
+        sample_keys = self.status_report.keys()
+        sample_keys.sort()
+
+        print '{0}\n{1}RUNNING\n{0}'.format('-'*80, ' '*32 )
+        for sample in sample_keys:
             
-        if 'Task status' in line:
-            print line
-            if 'COMPLETED' in line:
-                JCOMP = True
-             
-        if 'Jobs status:' in line:
-            JOBS = True
-            
-        if 'Publication status:' in line:
-            JOBS = False
-            PUBL = True
-
-        if line  == '':
-            JOBS = False
-            PUBL = False
-
-        if JOBS:
-            if 'failed' in line:
-                JFAIL = True
-                colorprint(line, 'red')
-            elif 'finished' in line: 
-                colorprint(line, 'green')
-            elif 'transferring' in line:
-                colorprint(line, 'yellow')
+            if self.status_report[sample]['status'] == 'COMPLETED':
+                self.completed_jobs.append(sample)
             else:
-                print line
+                print '\t\t\033[1m' + sample +'\033[0m\n'
+                out = self.getStatus(sample )
 
-        if PUBL:
-            if 'failed' in line:
-                PFAIL = True
-                colorprint(line, 'red')
-            elif 'finished' in line: 
-                colorprint(line, 'green')
-                if not '100.0' in line:
-                    JCOMP = False
-            elif 'transferring' in line:
-                colorprint(line, 'yellow')
+                if out['error'] == '':
+                    print out['head'],'\n'
+                    if out['job'].has_key('string'): print out['job']['string'],'\n'
+                    if out['publ'].has_key('string'): print out['publ']['string'],'\n'
+                    print '{0}\n'.format('-'*80 )
+                else:
+                    print out['error'],'\n'
+                    print '{0}\n'.format('-'*80 )
+
+
+
+    def getStatus(self, sample):
+        proc = Popen('crab status {0}'.format( self.status_report[sample]['path'] ),stdout = PIPE, shell=True)
+        (out, err) = proc.communicate()
+
+        status = { "head":'', "job": {}, "publ":{}, "das_url":"", "error":"" }
+        if "Task status" in out:
+            status["head"] = self.extractTaskStatus(out)
+
+            for block in out.split('\n\n'):
+                if "Jobs status" in block:
+                    status['job'] = self.refineOuput(block, int(self.status_report[sample]['finished']) )
+                    if len(status['job']['finished']) > 0:
+                        self.status_report[sample]['finished'] = status['job']['finished'][0]
+
+                if "Publication status" in block:
+                    status['publ'] = self.refineOuput(block)
+
+                if "Output dataset" in block:
+                    status['das_url'] = self.extractDASurl( block )
+                    self.status_report[sample]['das_url'] = status['das_url']
+
+            if status['job'].get('failed',False ) and self.resubmit:
+                self.resubmitJob( sample )
+
+            if status['publ'].get('failed',False ) and self.resubmit:
+                self.republishJob( sample )
+
+            if "COMPLETED" in status["head"]:
+                if status['publ'] == {}:
+                    self.status_report[sample]['status'] = 'COMPLETED'
+
+                elif status['publ']['finished'][0] == status['publ']['finished'][1]:
+                        self.writeDASurl( sample )
+
+        else:
+            status['error'] = out
+        return status
+
+    def getFilesOnDAS(self, url ):
+
+
+
+        host    = 'https://cmsweb.cern.ch'
+        query   = "file dataset={0}  instance=prod/phys03".format( url )
+        ckey    =  das_client.x509()
+        cert    =  das_client.x509()
+        capath  = os.environ.get("X509_CERT_DIR")
+        das_client.check_glidein()
+        das_client.check_auth(ckey)
+        file_list = []
+        jsondict = das_client.get_data(host, query, 0, 0, 0, 300, ckey, cert, capath, 0)
+        for i in  jsondict['data']:
+            try:
+                file_list.append( 'root://hephyse.oeaw.ac.at//dpm/oeaw.ac.at/home/cms/{0}'.format( i['file'][0]['name'] ) )
+            except:
+                pass
+        return file_list
+
+    def validatePublicSamples(self):
+
+        for sample in self.status_report.keys():
+            print sample 
+            missing = []
+            url = self.status_report[sample]['das_url']
+            if url == '' or self.status_report[sample]['validated']: continue
+
+            for f in self.getFilesOnDAS(url):
+                try:
+                    a = ROOT.TFile.Open(f)
+                    op = a.IsOpen()
+                    if a.IsZombie(): raise ReferenceError
+                    a.Close()
+                except ReferenceError:
+                    missing.append( ''.join([ s for s in f.split('/')[-1] if s.isdigit()]) )
+
+            if len(missing ) > 0:
+                self.resubmitJob(sample,  ','.join( missing ) )
             else:
-                print line
+                self.status_report[sample]['validated'] = True
+                print 'Validated\n'
 
-        if 'Warning' in line:
-            print line
+    def resubmitJob(self, sample, jids = None):
+        if not self.status_report.has_key(sample):
+            print "Sample not found..."
+            return
 
-    if JCOMP:
-      return 'COMPLETED', das_url
-    elif JFAIL:
-      return 'RESUBMIT', das_url
-    elif PFAIL:
-      return 'PUBLICATE', das_url
-    else:
-      return '', das_url
+        if jids is None:
+            proc = Popen('crab resubmit --sitewhitelist=T2_AT_Vienna {0}'.format( self.status_report[sample]['path'] ),stdout = PIPE, shell=True)
+        if type(jids) == str:
+            proc = Popen('crab resubmit --force --jobids={0} {1}'.format( jids, self.status_report[sample]['path'] ),stdout = PIPE, shell=True)
+            self.status_report[sample]['status'] = 'RUNNING'
+
+        (out, err) = proc.communicate()
+
+        if not jids is None:
+            print out
+        else:
+            print '\033[92mResubmitting failed jobs\033[0m' 
+
+    def republishJob(self, sample):
+        if not self.status_report.has_key(sample):
+            print "Sample not found..."
+            return
+
+        proc = Popen('crab resubmit --publication {0}'.format( self.status_report[sample]['path'] ),stdout = PIPE, shell=True)
+        (out, err) = proc.communicate()
+        print '\033[92mRepublishing failed jobs\033[0m' 
+
+    def refineOuput(self, block, preF = None):
+
+        output = {'string':[],'failed': False, 'finished':[]}
+        for l in block.split('\n'):
+            if "failed" in l:
+                output['string'].append( l.replace('failed','\033[91mfailed').replace(')',')\033[0m') )
+                output['failed'] = True
+
+            elif "transferring" in l:
+                output['string'].append( l.replace('transferring','\033[93mtransferring').replace(')',')\033[0m') )
+
+            elif "finished" in l:
+                fin = ''
+                output['finished'] = [ int(i,0) for i in l.split('(')[1].split(')')[0].replace(' ','').split('/') ]
+                if not preF is None:
+                    tmp = output['finished'][0] - preF
+                    self.total_finished += int(tmp)
+                    if tmp > 0:
+                        fin = '\t+{0}'.format( tmp )
+
+                output['string'].append( l.replace('finished','\033[92mfinished').replace(')','){0}\033[0m'.format(fin) ) )
+
+            else:
+                output['string'].append( l )
+
+        output['string'] = '\n'.join( output['string'] )
+        return output
+
+    def extractTaskStatus(self,block):
+        head = ''
+        for l in block.split('\n'):
+            if "Task status" in l:
+                head = l
+            if "warning" in l:
+                head += l + '\n'
+
+        return head
+
+    def extractDASurl(self,block):
+        url = ''
+        for l in block.split('\n'):
+            if "Output dataset:" in l:
+                url = l.replace("Output dataset:","").replace("\t","")
+        return url
+
+    def writeDASurl(self,run_sample):
+        if not self.status_report.has_key(run_sample):
+            print "Sample not found..."
+            return
+
+        if os.path.exists( '/'.join([self.base,'HephyTools', 'datasets.json'])):
+            with open( '/'.join([self.base,'HephyTools', 'datasets.json']),'r' ) as FSO:
+                data = json.load(FSO)
+        else:
+            return
+
+        for tranche in data.keys():
+            for sample in data[tranche].keys():
+                if '_'.join([sample, data[tranche][sample]['prod_label']]) in run_sample:
+                    print '\033[92mAdding DAS URL\033[0m'
+                    data[tranche][sample]['das_url'] = self.status_report[run_sample]['das_url']
+                    self.status_report[run_sample]['status'] = 'COMPLETED'
+
+        with open( '/'.join([self.base,'HephyTools', 'datasets.json']),'w' ) as FSO:
+            json.dump(data, FSO, indent=4)
+
+
+
+
+
 
 
 
 if __name__ == '__main__':
-    user = os.environ['USER']
+    main()
+
+
+
 
     
-    paths =['{0}/src/CMGTools/H2TauTau/prod/MC/crab_MCSummer16'.format(os.environ['CMSSW_BASE']),
-            '{0}/src/CMGTools/H2TauTau/prod/MC/crab_MCSpring16_reHLT'.format(os.environ['CMSSW_BASE']),
-            '{0}/src/CMGTools/H2TauTau/prod/sync/crab_MCSummer16_reHLT'.format(os.environ['CMSSW_BASE']),
-            '{0}/src/CMGTools/H2TauTau/prod/sync/crab_MCSummer16_reHLT_2'.format(os.environ['CMSSW_BASE']),
-            '{0}/src/CMGTools/H2TauTau/prod/sync/crab_MCSummer16'.format(os.environ['CMSSW_BASE']),                        
-            '{0}/src/CMGTools/H2TauTau/prod/DATA/crab_DATA'.format(os.environ['CMSSW_BASE']),
-            '{0}/src/CMGTools/TTHAnalysis/cfg/crab_HEPHY/crab_MCSummer16'.format(os.environ['CMSSW_BASE']),
-            '{0}/src/CMGTools/TTHAnalysis/cfg/crab_HEPHY/crab_DATA'.format(os.environ['CMSSW_BASE']),
-            '{0}/src/CMGTools/TTHAnalysis/cfg/crab_HEPHY/crab_MCSpring16_reHLT'.format(os.environ['CMSSW_BASE'])
-           ]
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--ptime',dest='ptime', help='Time between two status checks.', type=int, metavar = 'INT',default=3000)
-    parser.add_argument('--nrep',dest='rep', help='Number of status checks.', type=int, metavar = 'INT',default=1)
-    parser.add_argument('--res',dest='resubmit', help='Resubmit failed job?', action='store_true')
-
-    args = parser.parse_args()
-    if args.resubmit:
-        print 'Resubmiting jobs every {0}sec {1} time(s).'.format(args.ptime, args.rep)
-    for i in xrange(args.rep):
-        updateInformationFile(paths, RESUB=args.resubmit)
-        if args.rep > 1 and i != args.rep-1:
-            time.sleep(args.ptime)

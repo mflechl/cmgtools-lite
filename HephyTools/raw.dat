@@ -72,6 +72,9 @@ DATAET
 /SingleElectron/Run2016E-23Sep2016-v1/MINIAOD
 /SingleElectron/Run2016F-23Sep2016-v1/MINIAOD
 /SingleElectron/Run2016G-23Sep2016-v1/MINIAOD
+/SingleElectron/Run2016H-PromptReco-v1/MINIAOD
+/SingleElectron/Run2016H-PromptReco-v2/MINIAOD
+/SingleElectron/Run2016H-PromptReco-v3/MINIAOD
 DATAT
 /Tau/Run2016B-23Sep2016-v1/MINIAOD
 /Tau/Run2016B-23Sep2016-v3/MINIAOD
@@ -80,6 +83,9 @@ DATAT
 /Tau/Run2016E-23Sep2016-v1/MINIAOD
 /Tau/Run2016F-23Sep2016-v1/MINIAOD
 /Tau/Run2016G-23Sep2016-v1/MINIAOD
+/Tau/Run2016H-PromptReco-v1/MINIAOD
+/Tau/Run2016H-PromptReco-v2/MINIAOD
+/Tau/Run2016H-PromptReco-v3/MINIAOD
 Signal
 /GluGluHToTauTau_M125_13TeV_powheg_pythia8/RunIISummer16MiniAODv2-PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/MINIAODSIM
 /VBFHToTauTau_M125_13TeV_powheg_pythia8/RunIISummer16MiniAODv2-PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/MINIAODSIM

@@ -37,6 +37,10 @@ if os.path.isfile(path):
                 dsets[t][s]['das_url'] = ''
                 nJobs += 1
 
+            else:
+                if dsets[t][s]['step_1']['status'] == 'open':
+                    nJobs += 1
+                    
     with open(path,'wb') as FSO:
         json.dump(dsets, FSO, indent =4 )
 

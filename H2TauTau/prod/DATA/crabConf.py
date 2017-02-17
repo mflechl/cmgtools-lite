@@ -95,5 +95,5 @@ config.section_("Site")
 # Where the output files will be transmitted to
 config.Site.storageSite = 'T2_AT_Vienna'
 #config.Site.whitelist = ["T2_UK_SGrid_Bristol","T2_DE_DESY", "T2_US_Wisconsin"]
-#config.Site.whitelist = ["T2_AT_Vienna"]
+config.Site.whitelist = ["T2_AT_Vienna"]
 #config.Site.blacklist = ['T2_US_Purdue', 'T2_BE_IIHE', 'T2_US_Wisconsin', 'T2_UK_SGrid_Bristol', 'T2_US_Nebraska']
