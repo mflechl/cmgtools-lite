@@ -70,6 +70,7 @@ triggerObjsAna = cfg.Analyzer(
     triggerResultsHandle = ('TriggerResults', '', 'HLT'),
     extraTrig = [],
 )
+
 L1triggerObjsAna = cfg.Analyzer(
     L1TriggerAnalyzer,
     name='L1TriggerAnalyzer',

@@ -412,6 +412,59 @@ heavyFlavourHadronType = NTupleObjectType("heavyFlavourHadron", baseObjectTypes 
     
 ])
 
+triggerObjectType = NTupleObjectType("triggerObject", baseObjectTypes = [ particleType ], variables = [
+])
+
+filter_dict = { 
+    'HLT_IsoMu22' : 'hltL3crIsoL1sMu20L1f0L2f10QL3f22QL3trkIsoFiltered0p09' ,
+    'HLT_IsoMu22_eta2p1': 'hltL3crIsoL1sMu20L1f0L2f10QL3f22QL3trkIsoFiltered0p09'  ,
+    'HLT_IsoTkMu22' : 'hltL3fL1sMu20L1f0Tkf22QL3trkIsoFiltered0p09' ,
+    'HLT_IsoTkMu22_eta2p1' : 'hltL3fL1sMu20erL1f0Tkf22QL3trkIsoFiltered0p09' ,
+    'HLT_VLooseIsoPFTau120_Trk50_eta2p1' : 'hltPFTau120TrackPt50LooseAbsOrRelVLooseIso' ,
+    'HLT_VLooseIsoPFTau140_Trk50_eta2p1' : 'hltPFTau140TrackPt50LooseAbsOrRelVLooseIso' ,
+    'HLT_Ele25_eta2p1_WPTight_Gsf' : 'hltEle25erWPTightGsfTrackIsoFilter',
+    'HLT_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg' : 'hltDoublePFTau35TrackPt1MediumIsolationDz02Reg',
+    'HLT_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg' : 'hltDoublePFTau35TrackPt1MediumCombinedIsolationDz02Reg',
+}
+
+triggerObjectType_IsoMu22 = NTupleObjectType("triggerObject_IsoMu22", baseObjectTypes = [ particleType ], variables = [
+    NTupleVariable("passesFilter", lambda x : x.hasFilterLabel(filter_dict['HLT_IsoMu22']), int, mcOnly=False, help="passesFilter"),
+])
+triggerObjectType_IsoMu22_eta2p1 = NTupleObjectType("triggerObject_IsoMu22_eta2p1", baseObjectTypes = [ particleType ], variables = [
+    NTupleVariable("passesFilter", lambda x : x.hasFilterLabel(filter_dict['HLT_IsoMu22_eta2p1']), int, mcOnly=False, help="passesFilter"),
+])
+triggerObjectType_IsoTkMu22 = NTupleObjectType("triggerObject_IsoTkMu22", baseObjectTypes = [ particleType ], variables = [
+    NTupleVariable("passesFilter", lambda x : x.hasFilterLabel(filter_dict['HLT_IsoTkMu22']), int, mcOnly=False, help="passesFilter"),
+])
+triggerObjectType_IsoTkMu22_eta2p1 = NTupleObjectType("triggerObject_IsoTkMu22_eta2p1", baseObjectTypes = [ particleType ], variables = [
+    NTupleVariable("passesFilter", lambda x : x.hasFilterLabel(filter_dict['HLT_IsoTkMu22_eta2p1']), int, mcOnly=False, help="passesFilter"),
+])
+
+triggerObjectType_VLooseIsoPFTau120_Trk50_eta2p1 = NTupleObjectType("triggerObject_VLooseIsoPFTau120_Trk50_eta2p1", baseObjectTypes = [ particleType ], variables = [
+    NTupleVariable("passesFilter", lambda x : x.hasFilterLabel(filter_dict['HLT_VLooseIsoPFTau120_Trk50_eta2p1']), int, mcOnly=False, help="passesFilter"),
+])
+triggerObjectType_VLooseIsoPFTau140_Trk50_eta2p1 = NTupleObjectType("triggerObject_VLooseIsoPFTau140_Trk50_eta2p1", baseObjectTypes = [ particleType ], variables = [
+    NTupleVariable("passesFilter", lambda x : x.hasFilterLabel(filter_dict['HLT_VLooseIsoPFTau140_Trk50_eta2p1']), int, mcOnly=False, help="passesFilter"),
+])
+
+triggerObjectType_Ele25_eta2p1_WPTight_Gsf = NTupleObjectType("triggerObject_Ele25_eta2p1_WPTight_Gsf", baseObjectTypes = [ particleType ], variables = [
+    NTupleVariable("passesFilter", lambda x : x.hasFilterLabel(filter_dict['HLT_Ele25_eta2p1_WPTight_Gsf']), int, mcOnly=False, help="passesFilter"),
+])
+
+triggerObjectType_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg = NTupleObjectType("triggerObject_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg", baseObjectTypes = [ particleType ], variables = [
+    NTupleVariable("passesFilter", lambda x : x.hasFilterLabel(filter_dict['HLT_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg']), int, mcOnly=False, help="passesFilter"),
+])
+triggerObjectType_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg = NTupleObjectType("triggerObject_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg", baseObjectTypes = [ particleType ], variables = [
+    NTupleVariable("passesFilter", lambda x : x.hasFilterLabel(filter_dict['HLT_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg']), int, mcOnly=False, help="passesFilter"),
+])
+
+
+
+#triggerObjectType = NTupleObjectType("triggerObject", baseObjectTypes = [ particleType ], variables = [   #MFTEST
+#    NTupleVariable("passesFilter", lambda x : x.hasFilterLabel(test['HLT_IsoMu22_eta2p1']), int, mcOnly=False, help="passesFilter"),    #MFTEST
+##    NTupleVariable("passesFilter", lambda x : x.hasFilterLabel('hltL3crIsoL1sMu20L1f0L2f10QL3f22QL3trkIsoFiltered0p09'), int, mcOnly=False, help="passesFilter"),    #MFTEST
+#]) #MFTEST
+
 # triggerObjectIsoMu18 = NTupleObjectType("triggerTypeIsoMu18",   baseObjectTypes = [  ], variables = [
 #         NTupleVariable("eta", lambda x : x.eta(), float, mcOnly=False, help="eta of trigger object"),
 #         NTupleVariable("phi", lambda x : x.phi(), float, mcOnly=False, help="phi of trigger object"),

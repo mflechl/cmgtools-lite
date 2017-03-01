@@ -81,7 +81,7 @@ process.source = cms.Source("PoolSource",
                             fileNames = cms.untracked.vstring("file:root://cms-xrd-global.cern.ch//store/mc/RunIISummer16MiniAODv2/SUSYGluGluToBBHToTauTau_M-1000_TuneCUETP8M1_13TeV-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/50000/4C466283-6BC0-E611-B3AE-001517FB25E4.root")
 #                            fileNames = cms.untracked.vstring("file:VBF.root")
 #                           fileNames = cms.untracked.vstring("file:localTestFile_DY.root")
-                           )
+#                           )
 
 process.options = cms.untracked.PSet(
     allowUnscheduled=cms.untracked.bool(True)
