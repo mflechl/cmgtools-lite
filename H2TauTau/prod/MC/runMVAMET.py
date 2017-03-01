@@ -58,7 +58,7 @@ numberOfFilesToProcess = -1
 
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_condDBv2_cff')
 #process.GlobalTag.globaltag = '80X_dataRun2_2016SeptRepro_v6'
-process.GlobalTag.globaltag = '80X_mcRun2_asymptotic_2016_TrancheIV_v7'
+process.GlobalTag.globaltag = '80X_mcRun2_asymptotic_2016_TrancheIV_v8'
 process.load('Configuration.StandardSequences.GeometryRecoDB_cff')
 process.load('Configuration.StandardSequences.MagneticField_38T_cff')
 
@@ -71,14 +71,14 @@ dataset_user = 'CMS'
 dataset_name = '/SUSYGluGluToHToTauTau_M-160_TuneCUETP8M1_13TeV-pythia8/RunIISpring16MiniAODv2-PUSpring16RAWAODSIM_reHLT_80X_mcRun2_asymptotic_v14-v1/MINIAODSIM'
 dataset_files = '.*root'
 
-process.source = datasetToSource(                                                                   
-    dataset_user,
-    dataset_name,
-    dataset_files,
-    )
+# process.source = datasetToSource(                                                                   
+#     dataset_user,
+#     dataset_name,
+#     dataset_files,
+#     )
 
-#process.source = cms.Source("PoolSource",
-#                             fileNames = cms.untracked.vstring("file:data.root")
+process.source = cms.Source("PoolSource",
+                            fileNames = cms.untracked.vstring("file:root://cms-xrd-global.cern.ch//store/mc/RunIISummer16MiniAODv2/SUSYGluGluToBBHToTauTau_M-1000_TuneCUETP8M1_13TeV-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/50000/4C466283-6BC0-E611-B3AE-001517FB25E4.root")
 #                            fileNames = cms.untracked.vstring("file:VBF.root")
 #                           fileNames = cms.untracked.vstring("file:localTestFile_DY.root")
                            )
@@ -93,7 +93,7 @@ if not hasattr(process, "p"):
           process.p = cms.Path() 
 
 #loadLocalSqlite(process, "Summer16_23Sep2016AllV3_DATA.db", tag = 'JetCorrectorParametersCollection_Summer16_23Sep2016AllV3_DATA_AK4PFchs') 
-loadLocalSqlite(process, "Summer16_23Sep2016V3_MC.db", tag = 'JetCorrectorParametersCollection_Summer16_23Sep2016V3_MC_AK4PFchs')
+loadLocalSqlite(process, "Summer16_23Sep2016V4_MC.db", tag = 'JetCorrectorParametersCollection_Summer16_23Sep2016V4_MC_AK4PFchs')
 recorrectJets(process, isData) 
 jetCollection = "patJetsReapplyJEC"
 

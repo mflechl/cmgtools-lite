@@ -64,7 +64,7 @@ def getComponent(Datasets, name, readCache):
 
 def getDataComponent(Datasets, name, readCache):
     dataDir = "$CMSSW_BASE/src/CMGTools/RootTools/data/"
-    json = dataDir + 'Cert_271036-284044_13TeV_PromptReco_Collisions16_JSON.txt'
+    json = dataDir + 'Cert_271036-284044_13TeV_23Sep2016ReReco_Collisions16_JSON.txt'
 
     return kreator.makeDataComponentHEPHY('{0}_{1}_{2}'.format(name, Datasets[name]['prod_label'], timestamp()), Datasets[name]['url'], "PRIVATE", ".*root", "phys03",
                                           readCache = readCache,

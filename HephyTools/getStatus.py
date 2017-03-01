@@ -104,9 +104,16 @@ class StatusReport():
     def getStatusAll(self):
         sample_keys = self.status_report.keys()
         sample_keys.sort()
+        step_1=[]
+        step_2=[]
+        for k in sample_keys:
+            if 'CMGTools' in k:
+                step_2.append(k)
+            else:
+                step_1.append(k)
 
         print '{0}\n{1}RUNNING\n{0}'.format('-'*80, ' '*32 )
-        for sample in sample_keys:
+        for sample in step_1 + step_2:
             
             if self.status_report[sample]['status'] == 'COMPLETED':
                 self.completed_jobs.append(sample)

@@ -195,7 +195,6 @@ treeProducer = cfg.Analyzer(
 
 
 #print "Working"
-
 #selectedComponents = [ SingleMu, DoubleElectron, TTHToWW_PUS14, DYJetsToLL_M50_PU20bx25, TTJets_PUS14 ]
 #TTJets.splitFactor = 1000
 #selectedComponents = [TTJets]

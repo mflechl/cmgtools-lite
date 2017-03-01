@@ -71,7 +71,7 @@ config.section_("JobType")
 config.JobType.pluginName  = 'Analysis'
 # Name of the CMSSW configuration file
 config.JobType.psetName    = 'runMVAMET.py'
-config.JobType.inputFiles = ['Summer16_23Sep2016V3_MC.db']
+config.JobType.inputFiles = ['Summer16_23Sep2016V4_MC.db']
 
 config.section_("Data")
 config.Data.inputDataset = dataset
