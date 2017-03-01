@@ -178,6 +178,7 @@ class TriggerAnalyzer(Analyzer):
         event.TOE_Ele32_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1 = []
         event.TOE_Ele45_WPLoose_Gsf_L1JetTauSeeded = []
 
+        event.TOE_VLooseIsoPFTau120_Trk50_eta2p1 = []
         event.TOE_VLooseIsoPFTau140_Trk50_eta2p1 = []
         event.TOE_DoubleMediumIsoPFTau32_Trk1_eta2p1_Reg = []
         event.TOE_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg = []
@@ -208,6 +209,56 @@ class TriggerAnalyzer(Analyzer):
         for info in trigger_infos:
 #             if event.eventId == 104644585: 
 #                 for oo in info.objects: print oo.pt(), oo.eta(), oo.phi()
+
+
+#MF B: REMOVE trigger objects that do not fulfill the trigger requirements
+
+            f_IsoMu22='hltL3crIsoL1sMu20L1f0L2f10QL3f22QL3trkIsoFiltered0p09'
+            f_IsoMu22_eta2p1='hltL3crIsoL1sSingleMu20erL1f0L2f10QL3f22QL3trkIsoFiltered0p09'
+            f_IsoTkMu22='hltL3fL1sMu20L1f0Tkf22QL3trkIsoFiltered0p09'
+            f_IsoTkMu22_eta2p1='hltL3fL1sMu20erL1f0Tkf22QL3trkIsoFiltered0p09'
+            f_VLooseIsoPFTau120_Trk50_eta2p1='hltPFTau120TrackPt50LooseAbsOrRelVLooseIso'
+            f_VLooseIsoPFTau140_Trk50_eta2p1='hltPFTau140TrackPt50LooseAbsOrRelVLooseIso'
+
+##X            for obj in info.objects:
+##X
+##X                if info.name=='HLT_IsoTkMu22_eta2p1_v4':
+##X                    if not f_IsoTkMu22_eta2p1 in obj.filterLabels(): info.objects.remove(obj)
+
+
+#MF E
+
+#             print '###########'
+#             print event.eventId
+#             print info.name
+#             print len(info.objects),' XXX'
+#             for obj in info.objects: 
+#                 print len(obj.filterLabels())
+#                 toFilter = set(sorted(list(obj.filterLabels())))
+
+#                 print 'fffffffffff'
+# #                print 'filterLabels:',toFilter
+#                 print 'filterLabels:',set(sorted(list(obj.filterLabels())))
+#                 print 'FFFFFFFFFFF'
+
+#                 print 'ppppppppppp'
+#                 print 'pathNames:',set(sorted(list(obj.pathNames())))
+#                 print 'PPPPPPPPPPP'
+
+#                 print 'aaaaaaaaaaa'
+#                 print 'hasFilterLabel hltL3crIsoL1sMu20L1f0L2f10QL3f22QL3trkIsoFiltered0p09:',obj.hasFilterLabel('hltL3crIsoL1sMu20L1f0L2f10QL3f22QL3trkIsoFiltered0p09')
+#                 print 'hasConditionName hltL3crIsoL1sMu20L1f0L2f10QL3f22QL3trkIsoFiltered0p09:',obj.hasConditionName('hltL3crIsoL1sMu20L1f0L2f10QL3f22QL3trkIsoFiltered0p09')
+#                 print 'hasPathLastFilterAccepted',obj.hasPathLastFilterAccepted()
+#                 print 'hasPathL3FilterAccepted',obj.hasPathL3FilterAccepted()
+#                 print 'AAAAAAAAAAA'
+
+
+# #               if 'hltL3crIsoL1sMu20L1f0L2f10QL3f22QL3trkIsoFiltered0p09' in obj.filterLabels() or 'hltL3crIsoL1sSingleMu20erL1f0L2f10QL3f22QL3trkIsoFiltered0p09' in obj.filterLabels():
+# #                   print 'YYY hltL3crIsoL1sMu20L1f0L2f10QL3f22QL3trkIsoFiltered0p09 hltL3crIsoL1sSingleMu20erL1f0L2f10QL3f22QL3trkIsoFiltered0p09'
+# #                if 'hltL2fL1sSingleMu18erIorSingleMu20erL1f0L2Filtered10Q' in obj.filterLabels():
+# #                    print 'test YYY'
+#             print '###########'
+
             objs = info.objects     
             for to1, to2 in combinations(info.objects, 2):
                 to1Filter = set(sorted(list(to1.filterLabels())))

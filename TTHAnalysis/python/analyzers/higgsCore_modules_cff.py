@@ -9,6 +9,7 @@ from PhysicsTools.Heppy.analyzers.gen.all import *
 from CMGTools.H2TauTau.proto.analyzers.TriggerAnalyzer import TriggerAnalyzer
 from CMGTools.H2TauTau.proto.analyzers.L1TriggerAnalyzer import L1TriggerAnalyzer
 from CMGTools.H2TauTau.proto.analyzers.MCWeighter import MCWeighter
+from CMGTools.H2TauTau.proto.analyzers.METFilter import METFilter
 import os
 
 PDFGen = "MG" #MF LHE
@@ -69,6 +70,7 @@ triggerObjsAna = cfg.Analyzer(
     triggerResultsHandle = ('TriggerResults', '', 'HLT'),
     extraTrig = [],
 )
+
 L1triggerObjsAna = cfg.Analyzer(
     L1TriggerAnalyzer,
     name='L1TriggerAnalyzer',
@@ -356,6 +358,19 @@ metAna = cfg.Analyzer(
     collectionPostFix = "",
     )
 
+metFilter = cfg.Analyzer(
+    METFilter,
+    name='METFilter',
+    processName='RECO',
+    triggers=[
+        'Flag_HBHENoiseFilter', 
+        'Flag_HBHENoiseIsoFilter', 
+        'Flag_EcalDeadCellTriggerPrimitiveFilter',
+        'Flag_goodVertices',
+        'Flag_eeBadScFilter',
+        'Flag_globalTightHalo2016Filter'
+        ]
+    )
 
 # Core Event Analyzer (computes basic quantities like HT, dilepton masses)
 from CMGTools.TTHAnalysis.analyzers.ttHCoreEventAnalyzer import ttHCoreEventAnalyzer
@@ -391,6 +406,7 @@ higgsCoreSequence = [
     lepAna,
     jetAna,
     metAna,
+    metFilter,
 #    lheWeightAna,
 #    eventSelector,
     jsonAna,

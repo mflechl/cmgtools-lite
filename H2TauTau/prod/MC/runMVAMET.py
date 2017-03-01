@@ -58,7 +58,7 @@ numberOfFilesToProcess = -1
 
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_condDBv2_cff')
 #process.GlobalTag.globaltag = '80X_dataRun2_2016SeptRepro_v6'
-process.GlobalTag.globaltag = '80X_mcRun2_asymptotic_2016_TrancheIV_v7'
+process.GlobalTag.globaltag = '80X_mcRun2_asymptotic_2016_TrancheIV_v8'
 process.load('Configuration.StandardSequences.GeometryRecoDB_cff')
 process.load('Configuration.StandardSequences.MagneticField_38T_cff')
 
@@ -81,7 +81,7 @@ process.source = datasetToSource(
 #                             fileNames = cms.untracked.vstring("file:data.root")
 #                            fileNames = cms.untracked.vstring("file:VBF.root")
 #                           fileNames = cms.untracked.vstring("file:localTestFile_DY.root")
-                           )
+#                           )
 
 process.options = cms.untracked.PSet(
     allowUnscheduled=cms.untracked.bool(True)
@@ -93,7 +93,7 @@ if not hasattr(process, "p"):
           process.p = cms.Path() 
 
 #loadLocalSqlite(process, "Summer16_23Sep2016AllV3_DATA.db", tag = 'JetCorrectorParametersCollection_Summer16_23Sep2016AllV3_DATA_AK4PFchs') 
-loadLocalSqlite(process, "Summer16_23Sep2016V3_MC.db", tag = 'JetCorrectorParametersCollection_Summer16_23Sep2016V3_MC_AK4PFchs')
+loadLocalSqlite(process, "Summer16_23Sep2016V4_MC.db", tag = 'JetCorrectorParametersCollection_Summer16_23Sep2016V4_MC_AK4PFchs')
 recorrectJets(process, isData) 
 jetCollection = "patJetsReapplyJEC"
 
