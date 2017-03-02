@@ -122,27 +122,63 @@ triggerObjsAna.triggerResultsHandle = ('TriggerResults', '', TriggerTag)
 
 triggerObjsAna.extraTrig = triggerFlagsAna.triggerBits.keys()
 
-
-
 filter_dict = { 
-    'HLT_IsoMu18':   'hltL3crIsoL1sMu16L1f0L2f10QL3f18QL3trkIsoFiltered0p09',
-    'HLT_IsoMu20':   'hltL3crIsoL1sMu18L1f0L2f10QL3f20QL3trkIsoFiltered0p09',
-    'HLT_IsoMu22':   'hltL3crIsoL1sMu20L1f0L2f10QL3f22QL3trkIsoFiltered0p09',
-    'HLT_IsoMu22_eta2p1': 'hltL3crIsoL1sSingleMu20erL1f0L2f10QL3f22QL3trkIsoFiltered0p09',
-    'HLT_IsoMu24':   'hltL3crIsoL1sMu22L1f0L2f10QL3f24QL3trkIsoFiltered0p09',
-    'HLT_IsoMu27':  'hltL3crIsoL1sMu22Or25L1f0L2f10QL3f27QL3trkIsoFiltered0p09',
-    'HLT_IsoTkMu18':   'hltL3fL1sMu16L1f0Tkf18QL3trkIsoFiltered0p09',
-    'HLT_IsoTkMu20':   'hltL3fL1sMu18L1f0Tkf20QL3trkIsoFiltered0p09',
-    'HLT_IsoTkMu22_eta2p1': 'hltL3fL1sMu20erL1f0Tkf22QL3trkIsoFiltered0p09',
-    'HLT_IsoTkMu22':   'hltL3fL1sMu20L1f0Tkf22QL3trkIsoFiltered0p09',
-    'HLT_IsoTkMu24':   'hltL3fL1sMu22L1f0Tkf24QL3trkIsoFiltered0p09',
-    'HLT_IsoTkMu27':  'hltL3fL1sMu22Or25L1f0Tkf27QL3trkIsoFiltered0p09',
-    'HLT_IsoMu19_eta2p1_LooseIsoPFTau20_SingleL1':['hltL3crIsoL1sSingleMu18erIorSingleMu20erL1f0L2f10QL3f19QL3trkIsoFiltered0p09','hltOverlapFilterSingleIsoMu19LooseIsoPFTau20'],
-    "HLT_IsoMu19_eta2p1_LooseIsoPFTau20": ["hltL3crIsoL1sMu18erTauJet20erL1f0L2f10QL3f19QL3trkIsoFiltered0p09","hltPFTau20TrackLooseIsoAgainstMuon","hltOverlapFilterIsoMu19LooseIsoPFTau20"],
+    "HLT_IsoMu18"            :"hltL3crIsoL1sMu16L1f0L2f10QL3f18QL3trkIsoFiltered0p09",
+    "HLT_IsoMu20"            :"hltL3crIsoL1sMu18L1f0L2f10QL3f20QL3trkIsoFiltered0p09",
+    "HLT_IsoMu22"            :"hltL3crIsoL1sMu20L1f0L2f10QL3f22QL3trkIsoFiltered0p09",
+    "HLT_IsoMu22_eta2p1"     :"hltL3crIsoL1sSingleMu20erL1f0L2f10QL3f22QL3trkIsoFiltered0p09",
+    "HLT_IsoMu24"            :"hltL3crIsoL1sMu22L1f0L2f10QL3f24QL3trkIsoFiltered0p09",
+    "HLT_IsoMu27"            :"hltL3crIsoL1sMu22Or25L1f0L2f10QL3f27QL3trkIsoFiltered0p09",
+    "HLT_IsoTkMu18"          :"hltL3fL1sMu16L1f0Tkf18QL3trkIsoFiltered0p09",
+    "HLT_IsoTkMu20"          :"hltL3fL1sMu18L1f0Tkf20QL3trkIsoFiltered0p09",
+    "HLT_IsoTkMu22_eta2p1"   :"hltL3fL1sMu20erL1f0Tkf22QL3trkIsoFiltered0p09",
+    "HLT_IsoTkMu22"          :"hltL3fL1sMu20L1f0Tkf22QL3trkIsoFiltered0p09",
+    "HLT_IsoTkMu24"          :"hltL3fL1sMu22L1f0Tkf24QL3trkIsoFiltered0p09",
+    "HLT_IsoTkMu27"          :"hltL3fL1sMu22Or25L1f0Tkf27QL3trkIsoFiltered0p09",
+
+    "HLT_IsoMu17_eta2p1_LooseIsoPFTau20_SingleL1"   :{"Leg1":["hltL3crIsoL1sSingleMu16erL1f0L2f10QL3f17QL3trkIsoFiltered0p09","hltOverlapFilterSingleIsoMu17LooseIsoPFTau20"],
+                                                      "Leg2":["hltPFTau20TrackLooseIsoAgainstMuon","hltOverlapFilterSingleIsoMu17LooseIsoPFTau20"] },
+
+    "HLT_IsoMu17_eta2p1_LooseIsoPFTau20"            :{"Leg1":["hltL3crIsoL1sMu16erTauJet20erL1f0L2f10QL3f17QL3trkIsoFiltered0p09","hltOverlapFilterIsoMu17LooseIsoPFTau20"],
+                                                      "Leg2":["hltPFTau20TrackLooseIsoAgainstMuon","hltOverlapFilterIsoMu17LooseIsoPFTau20"] }  ,
+
+    "HLT_IsoMu19_eta2p1_LooseIsoPFTau20_SingleL1"   :{"Leg1":["hltL3crIsoL1sSingleMu18erIorSingleMu20erL1f0L2f10QL3f19QL3trkIsoFiltered0p09","hltOverlapFilterSingleIsoMu19LooseIsoPFTau20"],
+                                                      "Leg2":["hltPFTau20TrackLooseIsoAgainstMuon","hltOverlapFilterSingleIsoMu19LooseIsoPFTau20"]},
+
+    "HLT_IsoMu19_eta2p1_LooseIsoPFTau20"            :{"Leg1":["hltL3crIsoL1sMu18erTauJet20erL1f0L2f10QL3f19QL3trkIsoFiltered0p09","hltOverlapFilterIsoMu19LooseIsoPFTau20"],
+                                                      "Leg2":["hltPFTau20TrackLooseIsoAgainstMuon","hltOverlapFilterIsoMu19LooseIsoPFTau20"]} ,  
+
+    "HLT_IsoMu21_eta2p1_LooseIsoPFTau20_SingleL1"   :{"Leg1":["hltL3crIsoL1sSingleMu20erIorSingleMu22erL1f0L2f10QL3f21QL3trkIsoFiltered0p09","hltOverlapFilterSingleIsoMu21LooseIsoPFTau20"],
+                                                      "Leg2":["hltPFTau20TrackLooseIsoAgainstMuon","hltOverlapFilterSingleIsoMu21LooseIsoPFTau20"]},
+
+    "HLT_Ele23_WPLoose_Gsf"         :"hltEle23WPLooseGsfTrackIsoFilter",
+    "HLT_Ele24_eta2p1_WPLoose_Gsf"  :"hltSingleEle24WPLooseGsfTrackIsoFilter",
+    "HLT_Ele25_WPTight_Gsf"         :"hltEle25WPTightGsfTrackIsoFilter",
+    "HLT_Ele25_eta2p1_WPLoose_Gsf"  :"hltEle25erWPLooseGsfTrackIsoFilter",
+    "HLT_Ele25_eta2p1_WPTight_Gsf"  :"hltEle25erWPTightGsfTrackIsoFilter",
+    "HLT_Ele27_WPLoose_Gsf"         :"hltEle27noerWPLooseGsfTrackIsoFilter",
+    "HLT_Ele27_WPTight_Gsf"         :"hltEle27WPTightGsfTrackIsoFilter",
+    "HLT_Ele27_eta2p1_WPLoose_Gsf"  :"hltEle27erWPLooseGsfTrackIsoFilter",
+    "HLT_Ele27_eta2p1_WPTight_Gsf"  :"hltEle27erWPTightGsfTrackIsoFilter",
+    "HLT_Ele32_eta2p1_WPTight_Gsf"  :"hltEle32WPTightGsfTrackIsoFilter",
+
+    "HLT_Ele22_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1"   :{"Leg1":["hltEle22WPLooseL1SingleIsoEG20erGsfTrackIsoFilter", "hltOverlapFilterSingleIsoEle22WPLooseGsfLooseIsoPFTau20"],
+                                                                "Leg2":["hltPFTau20TrackLooseIso","hltOverlapFilterSingleIsoEle22WPLooseGsfLooseIsoPFTau20"]}, 
+
+    "HLT_Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1"   :{"Leg1":["hltEle24WPLooseL1SingleIsoEG22erGsfTrackIsoFilter", "hltOverlapFilterSingleIsoEle24WPLooseGsfLooseIsoPFTau20"],
+                                                                "Leg2":["hltPFTau20TrackLooseIso","hltOverlapFilterSingleIsoEle24WPLooseGsfLooseIsoPFTau20"]},  
+
+    "HLT_Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau20"            :{"Leg1":["hltEle24WPLooseL1IsoEG22erTau20erGsfTrackIsoFilter", "hltOverlapFilterIsoEle24WPLooseGsfLooseIsoPFTau20"],
+                                                                "Leg2":["hltPFTau20TrackLooseIso","hltOverlapFilterIsoEle24WPLooseGsfLooseIsoPFTau20"]},  
+
+    "HLT_Ele27_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1"   :{"Leg1":["hltEle27erWPLooseGsfTrackIsoFilter", "hltOverlapFilterIsoEle27WPLooseGsfLooseIsoPFTau20"],
+                                                                "Leg2":["hltPFTau20TrackLooseIso","hltOverlapFilterIsoEle27WPLooseGsfLooseIsoPFTau20"]}, 
+
+    "HLT_Ele32_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1"   :{"Leg1":["hltEle32WPLooseGsfTrackIsoFilter", "hltOverlapFilterIsoEle32WPLooseGsfLooseIsoPFTau20"],
+                                                                "Leg2":["hltPFTau20TrackLooseIso","hltOverlapFilterIsoEle32WPLooseGsfLooseIsoPFTau20"]},                                                   
 
     'HLT_VLooseIsoPFTau120_Trk50_eta2p1' : 'hltPFTau120TrackPt50LooseAbsOrRelVLooseIso' ,
     'HLT_VLooseIsoPFTau140_Trk50_eta2p1' : 'hltPFTau140TrackPt50LooseAbsOrRelVLooseIso' ,
-    'HLT_Ele25_eta2p1_WPTight_Gsf' : 'hltEle25erWPTightGsfTrackIsoFilter',
     'HLT_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg' : 'hltDoublePFTau35TrackPt1MediumIsolationDz02Reg',
     'HLT_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg' : 'hltDoublePFTau35TrackPt1MediumCombinedIsolationDz02Reg',
 }
@@ -180,11 +216,11 @@ sequence = cfg.Sequence(
 selectedComponents = [ ]
 
 ####################### FOR TESTING ###############################                
-from CMGTools.RootTools.samples.samples_13TeV_test import *
-comp = VBF
-comp.files = ['root://cms-xrd-global.cern.ch//store/user/mspanrin/VBFHToTauTau_M125_13TeV_powheg_pythia8/VBFHToTauTau_M125_powheg_MCSummer16_170222/170221_232256/0000/outfile_newMVA_13.root']
-print comp.files
-selectedComponents = [comp]
+# from CMGTools.RootTools.samples.samples_13TeV_test import *
+# comp = VBF
+# comp.files = ['root://cms-xrd-global.cern.ch//store/user/mspanrin/VBFHToTauTau_M125_13TeV_powheg_pythia8/VBFHToTauTau_M125_powheg_MCSummer16_170222/170221_232256/0000/outfile_newMVA_13.root']
+# print comp.files
+# selectedComponents = [comp]
 #     comp.splitFactor = 250
 #     comp.puFileData = '../MyDataPileupHistogram_observed_new.root'
 #     comp.puFileMC = '../MyMCPileupHistogram_normOfficial.root'

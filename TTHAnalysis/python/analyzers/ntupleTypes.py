@@ -420,9 +420,10 @@ def getTriggerObjectType(name, filtername = ''):
     elif type(filtername) == str:
         return NTupleObjectType("triggerObject", baseObjectTypes = [ particleType ], variables = [
                                  NTupleVariable("passesFilter", lambda x : x.hasFilterLabel(filtername), int, mcOnly=False, help="passesFilter")])
-    elif type(filtername) == list:
+    elif type(filtername) == dict:
         return NTupleObjectType("triggerObject", baseObjectTypes = [ particleType ], variables = [
-                                 NTupleVariable("passesFilter", lambda x : all( [x.hasFilterLabel(fn) for fn in filtername ] ), int, mcOnly=False, help="passesFilter")])
+                                 NTupleVariable("passesFilterLeg1", lambda x : all( [x.hasFilterLabel(fn) for fn in filtername['Leg1'] ] ), int, mcOnly=False, help="passesFilterLeg1"),
+                                 NTupleVariable("passesFilterLeg2", lambda x : all( [x.hasFilterLabel(fn) for fn in filtername['Leg2'] ] ), int, mcOnly=False, help="passesFilterLeg2"),])
 
 def ptRel(p4,axis):
     a = ROOT.TVector3(axis.Vect().X(),axis.Vect().Y(),axis.Vect().Z())
