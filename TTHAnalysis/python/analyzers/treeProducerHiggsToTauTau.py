@@ -49,7 +49,7 @@ higgsToTauTau_collections = higgsCore_collections.copy()
 higgsToTauTau_collections.update({
 
             # put more here
-#ms            "genJets"         : NTupleCollection("genJet", fourVectorType, 20, help="Generated jets (not cleaned)"),
+            "genJets"         : NTupleCollection("genJet", genJetType, 20, help="Generated jets (not cleaned)"),
             "genParticles"     : NTupleCollection("gen",  genParticleWithMotherId, 400, help="all pruned genparticles"), # need to decide which gen collection ?
             "generatorSummary"     : NTupleCollection("genSum",  genParticleWithLinksType, 400, help="all pruned genparticles"),
             #"gentaus"     : NTupleCollection("genTau",  genParticleWithLinksType, 200, help="all pruned genparticles"),
@@ -75,66 +75,14 @@ higgsToTauTau_collections.update({
             "corrMET"          : NTupleCollection("corrMET",     corrMetH, 1000, help="corr MET"),
 
             #"met" : NTupleCollection("met", metTypeH, help="PF E_{T}^{miss}, after type 1 corrections"),                             
-#MFTEST BELOW
-            'TOE_IsoMu18' : NTupleCollection( 'triggerObject_IsoMu18', triggerObjectType, 40 , help='trigger objects HLT_IsoMu18_v3'),
-            'TOE_IsoMu20' : NTupleCollection( 'triggerObject_IsoMu20', triggerObjectType, 40 , help='trigger objects HLT_IsoMu20_v4'),
-#            'TOE_IsoMu22' : NTupleCollection( 'triggerObject_IsoMu22', triggerObjectType, 40 , help='trigger objects HLT_IsoMu22_v3'),
-#            'TOE_IsoMu22_eta2p1' : NTupleCollection( 'triggerObject_IsoMu22_eta2p1', triggerObjectType, 40 , help='trigger objects HLT_IsoMu22_eta2p1_v2'),
-            'TOE_IsoMu22' : NTupleCollection( 'triggerObject_IsoMu22', triggerObjectType_IsoMu22, 40 , help='trigger objects HLT_IsoMu22_v3'),
-            'TOE_IsoMu22_eta2p1' : NTupleCollection( 'triggerObject_IsoMu22_eta2p1', triggerObjectType_IsoMu22_eta2p1, 40 , help='trigger objects HLT_IsoMu22_eta2p1_v2'),
-            'TOE_IsoMu24' : NTupleCollection( 'triggerObject_IsoMu24', triggerObjectType_IsoMu22, 40 , help='trigger objects HLT_IsoMu24_v2'),
-            'TOE_IsoMu27' : NTupleCollection( 'triggerObject_IsoMu27', triggerObjectType_IsoMu22, 40 , help='trigger objects HLT_IsoMu27_v4'),
-            'TOE_IsoTkMu18' : NTupleCollection( 'triggerObject_IsoTkMu18', triggerObjectType, 40 , help='trigger objects HLT_IsoTkMu18_v3'),
-            'TOE_IsoTkMu20' : NTupleCollection( 'triggerObject_IsoTkMu20', triggerObjectType, 40 , help='trigger objects HLT_IsoTkMu20_v5'),
-            'TOE_IsoTkMu22' : NTupleCollection( 'triggerObject_IsoTkMu22', triggerObjectType_IsoTkMu22, 40 , help='trigger objects HLT_IsoTkMu22_v3'),
-            'TOE_IsoTkMu22_eta2p1' : NTupleCollection( 'triggerObject_IsoTkMu22_eta2p1', triggerObjectType_IsoTkMu22_eta2p1, 40 , help='trigger objects HLT_IsoTkMu22_eta2p1_v2'),
-            'TOE_IsoTkMu24' : NTupleCollection( 'triggerObject_IsoTkMu24', triggerObjectType_IsoTkMu22, 40 , help='trigger objects HLT_IsoTkMu24_v2'),
-            'TOE_IsoTkMu27' : NTupleCollection( 'triggerObject_IsoTkMu27', triggerObjectType, 40 , help='trigger objects HLT_IsoTkMu27_v4'),
-            'TOE_IsoMu17_eta2p1_LooseIsoPFTau20_SingleL1' : NTupleCollection( 'triggerObject_IsoMu17_eta2p1_LooseIsoPFTau20_SingleL1', triggerObjectType, 40 , help='trigger objects HLT_IsoMu17_eta2p1_LooseIsoPFTau20_SingleL1_v5'),
-            'TOE_IsoMu17_eta2p1_LooseIsoPFTau20' : NTupleCollection( 'triggerObject_IsoMu17_eta2p1_LooseIsoPFTau20', triggerObjectType, 40 , help='trigger objects HLT_IsoMu17_eta2p1_LooseIsoPFTau20_v5'),
-            'TOE_IsoMu19_eta2p1_LooseIsoPFTau20_SingleL1' : NTupleCollection( 'triggerObject_IsoMu19_eta2p1_LooseIsoPFTau20_SingleL1', triggerObjectType, 40 , help='trigger objects HLT_IsoMu19_eta2p1_LooseIsoPFTau20_SingleL1_v2'),
-            'TOE_IsoMu19_eta2p1_LooseIsoPFTau20' : NTupleCollection( 'triggerObject_IsoMu19_eta2p1_LooseIsoPFTau20', triggerObjectType, 40 , help='trigger objects HLT_IsoMu19_eta2p1_LooseIsoPFTau20_v2'),
-            'TOE_IsoMu21_eta2p1_LooseIsoPFTau20_SingleL1' : NTupleCollection( 'triggerObject_IsoMu21_eta2p1_LooseIsoPFTau20_SingleL1', triggerObjectType, 40 , help='trigger objects HLT_IsoMu21_eta2p1_LooseIsoPFTau20_SingleL1_v2'),
-            
-            'TOE_Ele23_WPLoose_Gsf' : NTupleCollection( 'triggerObject_Ele23_WPLoose_Gsf', triggerObjectType, 40 , help='trigger objects HLT_Ele23_WPLoose_Gsf_v4'),
-            'TOE_Ele24_eta2p1_WPLoose_Gsf' : NTupleCollection( 'triggerObject_Ele24_eta2p1_WPLoose_Gsf', triggerObjectType, 40 , help='trigger objects HLT_Ele24_eta2p1_WPLoose_Gsf_v2'),
-            'TOE_Ele25_WPTight_Gsf' : NTupleCollection( 'triggerObject_Ele25_WPTight_Gsf', triggerObjectType, 40 , help='trigger objects HLT_Ele25_WPTight_Gsf_v2'),
-            'TOE_Ele25_eta2p1_WPLoose_Gsf' : NTupleCollection( 'triggerObject_Ele25_eta2p1_WPLoose_Gsf', triggerObjectType, 40 , help='trigger objects HLT_Ele25_eta2p1_WPLoose_Gsf_v2'),
-            'TOE_Ele25_eta2p1_WPTight_Gsf' : NTupleCollection( 'triggerObject_Ele25_eta2p1_WPTight_Gsf', triggerObjectType_Ele25_eta2p1_WPTight_Gsf, 40 , help='trigger objects HLT_Ele25_eta2p1_WPTight_Gsf_v2'),
-            'TOE_Ele27_WPLoose_Gsf' : NTupleCollection( 'triggerObject_Ele27_WPLoose_Gsf', triggerObjectType, 40 , help='trigger objects HLT_Ele27_WPLoose_Gsf_v2'),
-            'TOE_Ele27_WPTight_Gsf' : NTupleCollection( 'triggerObject_Ele27_WPTight_Gsf', triggerObjectType, 40 , help='trigger objects HLT_Ele27_WPTight_Gsf_v2'),
-            'TOE_Ele27_eta2p1_WPLoose_Gsf' : NTupleCollection( 'triggerObject_Ele27_eta2p1_WPLoose_Gsf', triggerObjectType, 40 , help='trigger objects HLT_Ele27_eta2p1_WPLoose_Gsf_v3'),
-            'TOE_Ele27_eta2p1_WPTight_Gsf' : NTupleCollection( 'triggerObject_Ele27_eta2p1_WPTight_Gsf', triggerObjectType, 40 , help='trigger objects HLT_Ele27_eta2p1_WPTight_Gsf_v3'),
-            'TOE_Ele32_eta2p1_WPTight_Gsf' : NTupleCollection( 'triggerObject_Ele32_eta2p1_WPTight_Gsf', triggerObjectType, 40 , help='trigger objects HLT_Ele32_eta2p1_WPTight_Gsf_v3'),
-            'TOE_Ele22_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1' : NTupleCollection( 'triggerObject_Ele22_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1', triggerObjectType, 40 , help='trigger objects HLT_Ele22_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1_v3'),
-            'TOE_Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1' : NTupleCollection( 'triggerObject_Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1', triggerObjectType, 40 , help='trigger objects HLT_Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1_v2'),
-            'TOE_Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau20' : NTupleCollection( 'triggerObject_Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau20', triggerObjectType, 40 , help='trigger objects HLT_Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_v2'),
-            'TOE_Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau30' : NTupleCollection( 'triggerObject_Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau30', triggerObjectType, 40 , help='trigger objects HLT_Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau30_v2'),
-            'TOE_Ele27_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1' : NTupleCollection( 'triggerObject_Ele27_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1', triggerObjectType, 40 , help='trigger objects HLT_Ele27_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1_v2'),
-            'TOE_Ele32_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1' : NTupleCollection( 'triggerObject_Ele32_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1', triggerObjectType, 40 , help='trigger objects HLT_Ele32_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1_v2'),
-            'TOE_Ele45_WPLoose_Gsf_L1JetTauSeeded' : NTupleCollection( 'triggerObject_Ele45_WPLoose_Gsf_L1JetTauSeeded', triggerObjectType, 40 , help='trigger objects HLT_Ele45_WPLoose_Gsf_L1JetTauSeeded_v2'),
-                        
-            'TOE_VLooseIsoPFTau120_Trk50_eta2p1' : NTupleCollection( 'triggerObjectVLooseIsoPFTau120_Trk50_eta2p1', triggerObjectType_VLooseIsoPFTau120_Trk50_eta2p1, 40 , help='triggerObjectVLooseIsoPFTau120_Trk50_eta2p1'),
-            'TOE_VLooseIsoPFTau140_Trk50_eta2p1' : NTupleCollection( 'triggerObjectVLooseIsoPFTau140_Trk50_eta2p1', triggerObjectType_VLooseIsoPFTau140_Trk50_eta2p1, 40 , help='triggerObjectVLooseIsoPFTau140_Trk50_eta2p1'),
-            'TOE_DoubleMediumIsoPFTau32_Trk1_eta2p1_Reg' : NTupleCollection( 'triggerObjectDoubleMediumIsoPFTau32_Trk1_eta2p1_Reg', triggerObjectType, 40 , help='triggerObjectDoubleMediumIsoPFTau32_Trk1_eta2p1_Reg'),
-            'TOE_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg' : NTupleCollection( 'triggerObjectDoubleMediumIsoPFTau35_Trk1_eta2p1_Reg', triggerObjectType_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg, 40 , help='triggerObjectDoubleMediumIsoPFTau35_Trk1_eta2p1_Reg'),
-            'TOE_DoubleMediumIsoPFTau40_Trk1_eta2p1_Reg' : NTupleCollection( 'triggerObjectDoubleMediumIsoPFTau40_Trk1_eta2p1_Reg', triggerObjectType, 40 , help='triggerObjectDoubleMediumIsoPFTau40_Trk1_eta2p1_Reg'),
-            'TOE_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg' : NTupleCollection( 'triggerObjectDoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg', triggerObjectType_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg, 40 , help='triggerObjectDoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg'),
 
-            # "triggerObjectEvents_IsoMu17"            : NTupleCollection("triggerObject_IsoMu17",   triggerObjectIsoMu17, 20, help="trigger objects HLT_IsoMu17_eta2p1"),
-            # "triggerObjectEvents_IsoMu18"            : NTupleCollection("triggerObject_IsoMu18",   triggerObjectIsoMu18, 20, help="trigger objects HLT_IsoMu18_v"),
-            # "triggerObjectEvents_IsoMu24"            : NTupleCollection("triggerObject_IsoMu24",     triggerObjectIsoMu24, 20, help="trigger objects HLT_IsoMu24_eta2p1_v1"),
-            # "triggerObjectEvents_IsoMu22"            : NTupleCollection("triggerObject_IsoMu22",     triggerObjectIsoMu24, 20, help="trigger objects HLT_IsoMu22_v1"),
-            # "triggerObjectEvents_Ele22"            : NTupleCollection("triggerObject_Ele22",     triggerObjectEle22, 20, help="trigger objects HLT_Ele22_eta2p1_WP75_Gsf_LooseIsoPFTau20_v1"),
-            # "triggerObjectEvents_Ele23"            : NTupleCollection("triggerObject_Ele23",     triggerObjectEle23, 20, help="trigger objects HLT_Ele23_WPLoose_Gsf_v*"),
-            # "triggerObjectEvents_Ele32"            : NTupleCollection("triggerObject_Ele32",     triggerObjectEle32, 20, help="trigger objects HLT_Ele32_eta2p1_WP75_Gsf_v1"),           
-            # "triggerObjectEvents_IsoPFTau35"            : NTupleCollection("triggerObject_IsoPFTau35",     triggerObjectIsoPFTau35, 20, help="trigger objects HLT_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg_v2"),
-
-            #"L1_DoubleIsoTau"            : NTupleCollection("L1_DoubleIsoTau",     L1_DoubleIsoTau, 20, help="L1 trigger objects"),
 
 })
 
 
+def getTriggerCollection(name, filterLabels):
 
+      return { name : NTupleCollection( name.replace('HLT','triggerObject'), getTriggerObjectType(name, filterLabels.get(name,'')), 40 , help=name) }
+     
 #Event.diLeptons[0].met().getSignificanceMatrix()(0,0)
  

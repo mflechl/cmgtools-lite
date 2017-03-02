@@ -2,7 +2,7 @@ from itertools import combinations
 from PhysicsTools.Heppy.analyzers.core.Analyzer import Analyzer
 from PhysicsTools.Heppy.analyzers.core.AutoHandle import AutoHandle
 from PhysicsTools.HeppyCore.utils.deltar import deltaR
-
+import inspect
 import PhysicsTools.HeppyCore.framework.config as cfg
 
 class TriggerInfo(object):
@@ -99,7 +99,6 @@ class TriggerAnalyzer(Analyzer):
         event.run = event.input.eventAuxiliary().id().run()
         event.lumi = event.input.eventAuxiliary().id().luminosityBlock()
         event.eventId = event.input.eventAuxiliary().id().event()
-
         triggerBits = self.handles['triggerResultsHLT'].product()
         names = event.input.object().triggerNames(triggerBits)
 
@@ -114,8 +113,16 @@ class TriggerAnalyzer(Analyzer):
 
         trigger_infos = []
         triggers_fired = []
-        for trigger_name in self.triggerList + self.extraTrig:
+        extra_trig = []
+        for extra in self.extraTrig:
+            setattr(event, extra, [])
+            for trig in names.triggerNames():
+                if extra in trig:
+                    extra_trig.append(trig)
+
+        for trigger_name in self.triggerList + extra_trig:
             index = names.triggerIndex(trigger_name)
+
             if index == len(triggerBits):
                 continue
             prescale = preScales.getPrescaleForIndex(index)
@@ -142,48 +149,6 @@ class TriggerAnalyzer(Analyzer):
             if not trigger_passed:
                 return False
 
-
-        event.TOE_IsoMu18 = []
-        event.TOE_IsoMu20 = []
-        event.TOE_IsoMu22 = []
-        event.TOE_IsoMu22_eta2p1 = []
-        event.TOE_IsoMu24 = []
-        event.TOE_IsoMu27 = []
-        event.TOE_IsoTkMu18 = []
-        event.TOE_IsoTkMu20 = []
-        event.TOE_IsoTkMu22 = []
-        event.TOE_IsoTkMu22_eta2p1 = []
-        event.TOE_IsoTkMu24 = []
-        event.TOE_IsoTkMu27 = []
-        event.TOE_IsoMu17_eta2p1_LooseIsoPFTau20_SingleL1 = []
-        event.TOE_IsoMu17_eta2p1_LooseIsoPFTau20 = []
-        event.TOE_IsoMu19_eta2p1_LooseIsoPFTau20_SingleL1 = []
-        event.TOE_IsoMu19_eta2p1_LooseIsoPFTau20 = []
-        event.TOE_IsoMu21_eta2p1_LooseIsoPFTau20_SingleL1 = []
-        event.TOE_Ele23_WPLoose_Gsf = []
-        event.TOE_Ele24_eta2p1_WPLoose_Gsf = []
-        event.TOE_Ele25_WPTight_Gsf = []
-        event.TOE_Ele25_eta2p1_WPLoose_Gsf = []
-        event.TOE_Ele25_eta2p1_WPTight_Gsf = []
-        event.TOE_Ele27_WPLoose_Gsf = []
-        event.TOE_Ele27_WPTight_Gsf = []
-        event.TOE_Ele27_eta2p1_WPLoose_Gsf = []
-        event.TOE_Ele27_eta2p1_WPTight_Gsf = []
-        event.TOE_Ele32_eta2p1_WPTight_Gsf = []
-        event.TOE_Ele22_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1 = []
-        event.TOE_Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1 = []
-        event.TOE_Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau20 = []
-        event.TOE_Ele24_eta2p1_WPLoose_Gsf_LooseIsoPFTau30 = []
-        event.TOE_Ele27_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1 = []
-        event.TOE_Ele32_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1 = []
-        event.TOE_Ele45_WPLoose_Gsf_L1JetTauSeeded = []
-
-        event.TOE_VLooseIsoPFTau120_Trk50_eta2p1 = []
-        event.TOE_VLooseIsoPFTau140_Trk50_eta2p1 = []
-        event.TOE_DoubleMediumIsoPFTau32_Trk1_eta2p1_Reg = []
-        event.TOE_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg = []
-        event.TOE_DoubleMediumIsoPFTau40_Trk1_eta2p1_Reg = []
-        event.TOE_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg = [] 
         
 #         if event.eventId == 104644585: import pdb ; pdb.set_trace()
         if self.cfg_ana.addTriggerObjects:
@@ -195,7 +160,7 @@ class TriggerAnalyzer(Analyzer):
 #                     if event.eventId == 104644585: import pdb ; pdb.set_trace()
                     if to.hasPathName(info.name):
 
-                        attr = info.name.replace('HLT','TOE').split('_v')[0]
+                        attr = info.name.split('_v')[0]
                         if hasattr(event, attr):
                             getattr(event, attr).append(to)
                         
@@ -213,44 +178,50 @@ class TriggerAnalyzer(Analyzer):
 
 #MF B: REMOVE trigger objects that do not fulfill the trigger requirements
 
-            f_IsoMu22='hltL3crIsoL1sMu20L1f0L2f10QL3f22QL3trkIsoFiltered0p09'
-            f_IsoMu22_eta2p1='hltL3crIsoL1sSingleMu20erL1f0L2f10QL3f22QL3trkIsoFiltered0p09'
-            f_IsoTkMu22='hltL3fL1sMu20L1f0Tkf22QL3trkIsoFiltered0p09'
-            f_IsoTkMu22_eta2p1='hltL3fL1sMu20erL1f0Tkf22QL3trkIsoFiltered0p09'
-            f_VLooseIsoPFTau120_Trk50_eta2p1='hltPFTau120TrackPt50LooseAbsOrRelVLooseIso'
-            f_VLooseIsoPFTau140_Trk50_eta2p1='hltPFTau140TrackPt50LooseAbsOrRelVLooseIso'
+            # f_IsoMu22='hltL3crIsoL1sMu20L1f0L2f10QL3f22QL3trkIsoFiltered0p09'
+            # f_IsoMu22_eta2p1='hltL3crIsoL1sSingleMu20erL1f0L2f10QL3f22QL3trkIsoFiltered0p09'
+            # f_IsoTkMu22='hltL3fL1sMu20L1f0Tkf22QL3trkIsoFiltered0p09'
+            # f_IsoTkMu22_eta2p1='hltL3fL1sMu20erL1f0Tkf22QL3trkIsoFiltered0p09'
+            # f_VLooseIsoPFTau120_Trk50_eta2p1='hltPFTau120TrackPt50LooseAbsOrRelVLooseIso'
+            # f_VLooseIsoPFTau140_Trk50_eta2p1='hltPFTau140TrackPt50LooseAbsOrRelVLooseIso'
 
 ##X            for obj in info.objects:
 ##X
-##X                if info.name=='HLT_IsoTkMu22_eta2p1_v4':
+##X                if info.name=='HLT_IsoMu19_eta2p1_LooseIsoPFTau20':
 ##X                    if not f_IsoTkMu22_eta2p1 in obj.filterLabels(): info.objects.remove(obj)
 
 
 #MF E
 
-#             print '###########'
-#             print event.eventId
+            # print '###########'
+            # print event.eventId
 #             print info.name
-#             print len(info.objects),' XXX'
-#             for obj in info.objects: 
-#                 print len(obj.filterLabels())
-#                 toFilter = set(sorted(list(obj.filterLabels())))
+#             # print len(info.objects),' XXX'
+#             if info.name == 'HLT_IsoMu19_eta2p1_LooseIsoPFTau20_v5':
+#                 for obj in info.objects: 
+#                     # print len(obj.filterLabels())
+# #                 toFilter = set(sorted(list(obj.filterLabels())))
 
-#                 print 'fffffffffff'
-# #                print 'filterLabels:',toFilter
-#                 print 'filterLabels:',set(sorted(list(obj.filterLabels())))
-#                 print 'FFFFFFFFFFF'
+# #                 print 'fffffffffff'
+# # #                print 'filterLabels:',toFilter
+# #                 print 'filterLabels:',set(sorted(list(obj.filterLabels())))
+# #                 print 'FFFFFFFFFFF'
 
-#                 print 'ppppppppppp'
-#                 print 'pathNames:',set(sorted(list(obj.pathNames())))
-#                 print 'PPPPPPPPPPP'
+# #                 print 'ppppppppppp'
+# #                 print 'pathNames:',set(sorted(list(obj.pathNames())))
+# #                 print 'PPPPPPPPPPP'
 
-#                 print 'aaaaaaaaaaa'
-#                 print 'hasFilterLabel hltL3crIsoL1sMu20L1f0L2f10QL3f22QL3trkIsoFiltered0p09:',obj.hasFilterLabel('hltL3crIsoL1sMu20L1f0L2f10QL3f22QL3trkIsoFiltered0p09')
-#                 print 'hasConditionName hltL3crIsoL1sMu20L1f0L2f10QL3f22QL3trkIsoFiltered0p09:',obj.hasConditionName('hltL3crIsoL1sMu20L1f0L2f10QL3f22QL3trkIsoFiltered0p09')
-#                 print 'hasPathLastFilterAccepted',obj.hasPathLastFilterAccepted()
-#                 print 'hasPathL3FilterAccepted',obj.hasPathL3FilterAccepted()
-#                 print 'AAAAAAAAAAA'
+#                     print 'aaaaaaaaaaa'
+#                     print obj.hasAnyName('hltL3crIsoL1sMu18erTauJet20erL1f0L2f10QL3f19QL3trkIsoFiltered0p09')
+#                     print 'hasFilterLabel hltL3crIsoL1sMu18erTauJet20erL1f0L2f10QL3f19QL3trkIsoFiltered0p09:',obj.hasFilterLabel('hltL3crIsoL1sMu18erTauJet20erL1f0L2f10QL3f19QL3trkIsoFiltered0p09')
+#                     print 'hasFilterLabel hltPFTau20TrackLooseIsoAgainstMuon:',obj.hasFilterLabel('hltPFTau20TrackLooseIsoAgainstMuon')
+#                     print 'hasFilterLabel hltOverlapFilterIsoMu19LooseIsoPFTau20:',obj.hasFilterLabel('hltOverlapFilterIsoMu19LooseIsoPFTau20')
+#                     print 'hasConditionName hltL3crIsoL1sMu18erTauJet20erL1f0L2f10QL3f19QL3trkIsoFiltered0p09:',obj.hasConditionName('hltL3crIsoL1sMu18erTauJet20erL1f0L2f10QL3f19QL3trkIsoFiltered0p09')
+#                     print 'hasConditionName hltPFTau20TrackLooseIsoAgainstMuon:',obj.hasConditionName('hltPFTau20TrackLooseIsoAgainstMuon')
+#                     print 'hasConditionName hltOverlapFilterIsoMu19LooseIsoPFTau20:',obj.hasConditionName('hltOverlapFilterIsoMu19LooseIsoPFTau20')
+#                     print 'hasPathLastFilterAccepted',obj.hasPathLastFilterAccepted()
+#                     print 'hasPathL3FilterAccepted',obj.hasPathL3FilterAccepted()
+#                     print 'AAAAAAAAAAA'
 
 
 # #               if 'hltL3crIsoL1sMu20L1f0L2f10QL3f22QL3trkIsoFiltered0p09' in obj.filterLabels() or 'hltL3crIsoL1sSingleMu20erL1f0L2f10QL3f22QL3trkIsoFiltered0p09' in obj.filterLabels():
