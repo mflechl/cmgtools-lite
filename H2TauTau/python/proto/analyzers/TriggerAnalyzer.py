@@ -2,7 +2,6 @@ from itertools import combinations
 from PhysicsTools.Heppy.analyzers.core.Analyzer import Analyzer
 from PhysicsTools.Heppy.analyzers.core.AutoHandle import AutoHandle
 from PhysicsTools.HeppyCore.utils.deltar import deltaR
-import inspect
 import PhysicsTools.HeppyCore.framework.config as cfg
 
 class TriggerInfo(object):
