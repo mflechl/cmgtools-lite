@@ -158,12 +158,22 @@ if numberOfFilesToProcess > 0:
 
 process.load('CMGTools.diLeptonSelector.diLeptonFilter_cfi')
 process.eventDiLeptonFilter
+#########################################################
+process.load('RecoMET.METFilters.BadPFMuonFilter_cfi')
+process.BadPFMuonFilter.muons = cms.InputTag("slimmedMuons")
+process.BadPFMuonFilter.PFCandidates = cms.InputTag("packedPFCandidates")
+process.BadPFMuonFilter.taggingMode = cms.bool(True)
+process.load('RecoMET.METFilters.BadChargedCandidateFilter_cfi')
+process.BadChargedCandidateFilter.muons = cms.InputTag("slimmedMuons")
+process.BadChargedCandidateFilter.PFCandidates = cms.InputTag("packedPFCandidates")
+process.BadChargedCandidateFilter.taggingMode = cms.bool(True)
+#########################################################
 
 
 if not isData:
     process.genEvtWeightsCounterPath = cms.Path(process.genEvtWeightsCounter)
     #process.schedule.insert(0, process.genEvtWeightsCounterPath)
-process.p = cms.Path(process.eventDiLeptonFilter*process.METCorrSignificance)
+process.p = cms.Path(process.eventDiLeptonFilter*process.METCorrSignificance*process.BadChargedCandidateFilter*process.BadPFMuonFilter)
 
 ## logger
 process.load('FWCore.MessageLogger.MessageLogger_cfi')
