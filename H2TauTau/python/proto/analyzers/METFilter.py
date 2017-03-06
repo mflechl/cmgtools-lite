@@ -16,6 +16,8 @@ class METFilter(Analyzer):
         self.handles['TriggerResults'] = AutoHandle(('TriggerResults', '', self.processName), 'edm::TriggerResults', fallbackLabel=('TriggerResults', '', 'PAT')) # fallback for FastSim
         self.handles['packedCandidates'] = AutoHandle('packedPFCandidates', 'std::vector<pat::PackedCandidate>')
         self.handles['muons'] = AutoHandle('slimmedMuons', 'std::vector<pat::Muon>')
+        self.handles['passBadMuonFilter'] = AutoHandle( 'BadPFMuonFilter','bool' )
+        self.handles['passBadChargedHadronFilter'] = AutoHandle( 'BadChargedCandidateFilter', 'bool' )
 
     def beginLoop(self, setup):
         super(METFilter, self).beginLoop(setup)
@@ -54,8 +56,11 @@ class METFilter(Analyzer):
         packedCandidates = self.handles['packedCandidates'].product()
         muons = self.handles['muons'].product()
 
-        event.passBadMuonFilter = passBadMuonFilter(muons, packedCandidates)
-        event.passBadChargedHadronFilter = passBadChargedHadronFilter(muons, packedCandidates)
+        #event.passBadMuonFilter = passBadMuonFilter(muons, packedCandidates)
+        #event.passBadChargedHadronFilter = passBadChargedHadronFilter(muons, packedCandidates)
+
+        event.passBadMuonFilter = self.handles['passBadMuonFilter'].product()[0]
+        event.passBadChargedHadronFilter = self.handles['passBadChargedHadronFilter'].product()[0]
 
         if event.passBadMuonFilter:
             self.count.inc('pass bad muon')

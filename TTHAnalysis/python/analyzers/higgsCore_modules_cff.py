@@ -361,7 +361,7 @@ metAna = cfg.Analyzer(
 metFilter = cfg.Analyzer(
     METFilter,
     name='METFilter',
-    processName='RECO',
+    processName='PAT',
     triggers=[
         'Flag_HBHENoiseFilter', 
         'Flag_HBHENoiseIsoFilter', 
@@ -369,8 +369,8 @@ metFilter = cfg.Analyzer(
         'Flag_goodVertices',
         'Flag_eeBadScFilter',
         'Flag_globalTightHalo2016Filter'
-        ]
-    )
+    ]
+)
 
 # Core Event Analyzer (computes basic quantities like HT, dilepton masses)
 from CMGTools.TTHAnalysis.analyzers.ttHCoreEventAnalyzer import ttHCoreEventAnalyzer

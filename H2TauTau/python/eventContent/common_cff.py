@@ -33,6 +33,8 @@ common = [
     'keep *_slimmedMETsPuppi_*_*',
     'keep *_generator_*_*',
     'keep *_genEvtWeightsCounter_*_MVAMET',
+    'keep *_BadPFMuonFilter_*_MVAMET',
+    'keep *_BadChargedCandidateFilter_*_MVAMET',
     'keep *_offlineBeamSpot_*_*',
     'keep recoCaloClusters_*_*_*',
     'keep *_reducedEgamma_reducedConversions_*',
