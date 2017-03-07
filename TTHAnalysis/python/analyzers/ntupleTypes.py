@@ -347,6 +347,11 @@ fatJetType = NTupleObjectType("fatJet",  baseObjectTypes = [ jetType ], variable
 jetTypeH = NTupleObjectType("jetSusy",  baseObjectTypes = [ jetTypeExtra ], variables = [
     NTupleVariable("mcMatchFlav",  lambda x : getattr(x,'mcMatchFlav',-99), int, mcOnly=True, help="Flavour of associated parton from hard scatter (if any)"),
 ])#JB
+
+jetTypeJES = NTupleObjectType("jetTypeJES",  baseObjectTypes = [ ], mcOnly=True, variables = [
+    NTupleVariable("pt",  lambda x : x.pt(), float, mcOnly=True, help=""),
+    NTupleVariable("mass",  lambda x : x.mass(), float, mcOnly=True, help=""),
+])#JB
    
 ##------------------------------------------  
 ## MET

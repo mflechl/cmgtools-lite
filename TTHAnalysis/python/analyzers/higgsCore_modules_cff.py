@@ -361,7 +361,6 @@ metAna = cfg.Analyzer(
 metFilter = cfg.Analyzer(
     METFilter,
     name='METFilter',
-    processName='PAT',
     triggers=[
         'Flag_HBHENoiseFilter', 
         'Flag_HBHENoiseIsoFilter', 

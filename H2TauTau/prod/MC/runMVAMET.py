@@ -168,12 +168,19 @@ process.BadChargedCandidateFilter.muons = cms.InputTag("slimmedMuons")
 process.BadChargedCandidateFilter.PFCandidates = cms.InputTag("packedPFCandidates")
 process.BadChargedCandidateFilter.taggingMode = cms.bool(True)
 #########################################################
-
+fName = "Summer16_23Sep2016HV4_DATA_UncertaintySources_AK4PFchs.txt"
+process.mod = cms.EDProducer(
+          "MiniAODJetFullSystematicsEmbedder",
+          src = cms.InputTag("patJetsReapplyJEC"),
+          corrLabel = cms.string("AK4PFchs"),
+          fName = cms.string(fName)
+)
+#########################################################
 
 if not isData:
     process.genEvtWeightsCounterPath = cms.Path(process.genEvtWeightsCounter)
     #process.schedule.insert(0, process.genEvtWeightsCounterPath)
-process.p = cms.Path(process.eventDiLeptonFilter*process.METCorrSignificance*process.BadChargedCandidateFilter*process.BadPFMuonFilter)
+process.p = cms.Path(process.eventDiLeptonFilter*process.METCorrSignificance*process.BadChargedCandidateFilter*process.BadPFMuonFilter*process.mod)
 
 ## logger
 process.load('FWCore.MessageLogger.MessageLogger_cfi')
