@@ -221,6 +221,7 @@ selectedComponents = [ ]
 # comp.files = ['root://cms-xrd-global.cern.ch//store/user/mspanrin/VBFHToTauTau_M125_13TeV_powheg_pythia8/VBFHToTauTau_M125_powheg_MCSummer16_170222/170221_232256/0000/outfile_newMVA_13.root']
 # print comp.files
 # selectedComponents = [comp]
+
 #     comp.splitFactor = 250
 #     comp.puFileData = '../MyDataPileupHistogram_observed_new.root'
 #     comp.puFileMC = '../MyMCPileupHistogram_normOfficial.root'

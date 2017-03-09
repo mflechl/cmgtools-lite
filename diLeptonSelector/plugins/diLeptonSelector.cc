@@ -129,7 +129,7 @@ bool diLeptonSelector::filter(edm::Event& iEvent, const edm::EventSetup& params)
    
    if( counterHardTaus >= 2 ) return true;
    if( counterSoftTaus >=1 && counterMuons >=1 ) return true;
-   if( counterMuons >=1 ) return true;
+   //if( counterMuons >=1 ) return true;
    if( counterSoftTaus >=1 && counterElectrons >=1 ) return true;
 
    return false;
