@@ -38,10 +38,9 @@ for i in xrange(0,len(crabFiles)) :
 import imp
 #handle = open("heppy_config.py", 'r')
 #cfo = imp.load_source("heppy_config", "heppy_config.py", handle)
-from CMGTools.RootTools.samples.TEMPLATE_run_vienna_h2tau_cfg_DATA import cfg
-from CMGTools.RootTools.samples.TEMPLATE_run_vienna_h2tau_cfg_DATA import sequence as seq
-#from CMGTools.RootTools.samples.TEMPLATE_run_vienna_h2tau_cfg_MC import cfg
-#from CMGTools.RootTools.samples.TEMPLATE_run_vienna_h2tau_cfg_MC import sequence as seq
+from CMGTools.RootTools.samples.TEMPLATE_run_vienna_h2tau_cfg import cfg
+from CMGTools.RootTools.samples.TEMPLATE_run_vienna_h2tau_cfg import sequence as seq
+
 pre = None
 #config = cfo.config
 #cfg = cfo.cfg

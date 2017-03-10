@@ -18,8 +18,9 @@ class DatasetChooser():
         y = str(lt.tm_year).replace('20','')
         m = str(lt.tm_mon) if lt.tm_mon>9 else '{0}{1}'.format('0',lt.tm_mon)
         d = str(lt.tm_mday) if lt.tm_mday>9 else '{0}{1}'.format('0',lt.tm_mday)
-
-        return ''.join([y,m,d])
+        h = str(lt.tm_hpur) if lt.tm_hour>9 else '{0}{1}'.format('0',lt.tm_hour)
+        tmin = str(lt.tm_min) if lt.tm_min>9 else '{0}{1}'.format('0',lt.tm_min)
+        return ''.join([y,m,d,h,tmin])
 
     def GetOpenJob(self):
         from json import load, dump
@@ -71,7 +72,7 @@ config.section_("JobType")
 config.JobType.pluginName  = 'Analysis'
 # Name of the CMSSW configuration file
 config.JobType.psetName    = 'runMVAMET.py'
-config.JobType.inputFiles = ['Summer16_23Sep2016AllV3_DATA.db']
+config.JobType.inputFiles = ['Summer16_23Sep2016AllV4_DATA.db']
 
 config.section_("Data")
 config.Data.inputDataset = dataset
