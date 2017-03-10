@@ -71,7 +71,7 @@ config.section_("JobType")
 config.JobType.pluginName  = 'Analysis'
 # Name of the CMSSW configuration file
 config.JobType.psetName    = 'runMVAMET.py'
-config.JobType.inputFiles = ['Summer16_23Sep2016V4_MC.db']
+config.JobType.inputFiles = ['Summer16_23Sep2016V4_MC.db','Summer16_23Sep2016HV4_DATA_UncertaintySources_AK4PFchs.txt']
 
 config.section_("Data")
 config.Data.inputDataset = dataset
@@ -94,5 +94,5 @@ config.section_("Site")
 # Where the output files will be transmitted to
 config.Site.storageSite = 'T2_AT_Vienna'
 #config.Site.whitelist = ["T2_UK_SGrid_Bristol","T2_DE_DESY", "T2_US_Wisconsin"]
-#config.Site.whitelist = ["T2_AT_Vienna"]
+config.Site.whitelist = ["T2_AT_Vienna"]
 #config.Site.blacklist = ['T2_US_Purdue', 'T2_BE_IIHE', 'T2_US_Wisconsin', 'T2_UK_SGrid_Bristol', 'T2_US_Nebraska']
