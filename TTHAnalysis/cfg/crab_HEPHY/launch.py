@@ -32,7 +32,7 @@ def showSamples():
     for tranche in dsets.keys():
         for sample in dsets[tranche].keys():
             if dsets[tranche][sample]['das_url'] != '':
-                print sample
+                print "python launch.py --sample " + sample
 
 
 def getDataset(input_tag):

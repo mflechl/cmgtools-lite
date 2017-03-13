@@ -39,7 +39,8 @@ import imp
 #handle = open("heppy_config.py", 'r')
 #cfo = imp.load_source("heppy_config", "heppy_config.py", handle)
 from CMGTools.RootTools.samples.TEMPLATE_run_vienna_h2tau_cfg import cfg
-from CMGTools.RootTools.samples.TEMPLATE_run_vienna_h2tau_cfg import sequence as seq
+from CMGTools.RootTools.samples.TEMPLATE_run_vienna_h2tau_cfg import getSequence as seq
+
 
 pre = None
 #config = cfo.config
@@ -49,8 +50,8 @@ pre = None
 #handle.close()
 
 from PhysicsTools.HeppyCore.framework.eventsfwlite import Events
-print "creating config with ",[comp],seq
-config = cfg.Config(components=[comp],sequence=seq,preprocessor=pre,services=[],events_class=Events)
+print "creating config with ",[comp],seq(comp.isData)
+config = cfg.Config(components=[comp],sequence=seq(comp.isData),preprocessor=pre,services=[],events_class=Events)
 
 #replace files with crab ones
 config.components[0].files=crabFiles

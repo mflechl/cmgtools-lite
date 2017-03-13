@@ -116,7 +116,6 @@ class TriggerAnalyzer(Analyzer):
         for extra in self.extraTrig:
             setattr(event, extra, [])
             for trig in names.triggerNames():
-                print trig
                 if extra in trig:
                     extra_trig.append(trig)
 
