@@ -18,6 +18,8 @@ class METFilter(Analyzer):
         self.handles['muons'] = AutoHandle('slimmedMuons', 'std::vector<pat::Muon>')
         self.handles['passBadMuonFilter'] = AutoHandle( 'BadPFMuonFilter','bool' )
         self.handles['passBadChargedHadronFilter'] = AutoHandle( 'BadChargedCandidateFilter', 'bool' )
+        self.handles['failBadGlobalMuonTaggerMAOD'] = AutoHandle( 'badGlobalMuonTaggerMAOD', 'bool' )
+        self.handles['failCloneGlobalMuonTaggerMAOD'] = AutoHandle( 'cloneGlobalMuonTaggerMAOD', 'bool' )
 
     def beginLoop(self, setup):
         super(METFilter, self).beginLoop(setup)
@@ -29,6 +31,8 @@ class METFilter(Analyzer):
 
         self.count.register('pass bad muon')
         self.count.register('pass bad charged hadron')
+        self.count.register('fail bad global muon tagger')
+        self.count.register('fail clone global muon tagger')
 
     def process(self, event):
         if self.autoAccept:
@@ -61,10 +65,16 @@ class METFilter(Analyzer):
 
         event.passBadMuonFilter = self.handles['passBadMuonFilter'].product()[0]
         event.passBadChargedHadronFilter = self.handles['passBadChargedHadronFilter'].product()[0]
+        event.failBadGlobalMuonTaggerMAOD = self.handles['failBadGlobalMuonTaggerMAOD'].product()[0]
+        event.failCloneGlobalMuonTaggerMAOD = self.handles['failCloneGlobalMuonTaggerMAOD'].product()[0]
 
         if event.passBadMuonFilter:
             self.count.inc('pass bad muon')
         if event.passBadChargedHadronFilter:
             self.count.inc('pass bad charged hadron')
+        if event.failBadGlobalMuonTaggerMAOD:
+            self.count.inc('fail bad global muon tagger')
+        if event.failCloneGlobalMuonTaggerMAOD:
+            self.count.inc('fail clone global muon tagger')
 
         return True

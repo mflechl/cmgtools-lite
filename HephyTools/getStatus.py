@@ -163,7 +163,8 @@ class StatusReport():
                 if status['publ'] == {}:
                     self.status_report[sample]['status'] = 'COMPLETED'
 
-                elif status['publ']['finished'][0] == status['publ']['finished'][1]:
+                elif len(status['publ']['finished'] ) > 0:
+                    if status['publ']['finished'][0] == status['publ']['finished'][1]:
                         self.writeDASurl( sample )
 
         else:

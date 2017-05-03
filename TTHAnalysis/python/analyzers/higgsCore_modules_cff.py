@@ -92,6 +92,9 @@ eventFlagsAna = cfg.Analyzer(
         "trackingFailureFilter" : [ "Flag_trackingFailureFilter" ],
         "eeBadScFilter" : [ "Flag_eeBadScFilter" ],
         "ecalLaserCorrFilter" : [ "Flag_ecalLaserCorrFilter" ],
+        "duplicateMuons":["Flag_duplicateMuons"] ,
+        "badMuons":["Flag_badMuons"] ,
+        "noBadMuons":["Flag_noBadMuons"],
         "trkPOGFilters" : [ "Flag_trkPOGFilters" ],
         "trkPOG_manystripclus53X" : [ "Flag_trkPOG_manystripclus53X" ],
         "trkPOG_toomanystripclus53X" : [ "Flag_trkPOG_toomanystripclus53X" ],
@@ -367,7 +370,10 @@ metFilter = cfg.Analyzer(
         'Flag_EcalDeadCellTriggerPrimitiveFilter',
         'Flag_goodVertices',
         'Flag_eeBadScFilter',
-        'Flag_globalTightHalo2016Filter'
+        'Flag_globalTightHalo2016Filter',
+        "Flag_duplicateMuons" ,
+        "Flag_badMuons" ,
+        "Flag_noBadMuons",
     ]
 )
 

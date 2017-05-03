@@ -36,6 +36,8 @@ common = [
     'keep *_*_p4OutJES*_MVAMET',
     'keep *_BadPFMuonFilter_*_MVAMET',
     'keep *_BadChargedCandidateFilter_*_MVAMET',
+    'keep *_badGlobalMuonTaggerMAOD_*_MVAMET',
+    'keep *_cloneGlobalMuonTaggerMAOD_*_MVAMET',
     'keep *_offlineBeamSpot_*_*',
     'keep recoCaloClusters_*_*_*',
     'keep *_reducedEgamma_reducedConversions_*',

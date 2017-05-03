@@ -52,8 +52,8 @@ def addNewTauID(process):
 
 
 process = cms.Process("MVAMET")
-#process.maxEvents = cms.untracked.PSet(input=cms.untracked.int32(100))
-process.maxEvents = cms.untracked.PSet(input=cms.untracked.int32(-1))
+process.maxEvents = cms.untracked.PSet(input=cms.untracked.int32(1000))
+#process.maxEvents = cms.untracked.PSet(input=cms.untracked.int32(-1))
 numberOfFilesToProcess = -1
 
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_condDBv2_cff')
@@ -71,17 +71,17 @@ dataset_user = 'CMS'
 dataset_name = '/SUSYGluGluToHToTauTau_M-160_TuneCUETP8M1_13TeV-pythia8/RunIISpring16MiniAODv2-PUSpring16RAWAODSIM_reHLT_80X_mcRun2_asymptotic_v14-v1/MINIAODSIM'
 dataset_files = '.*root'
 
-process.source = datasetToSource(                                                                   
-          dataset_user,
-          dataset_name,
-          dataset_files,
-)
+#process.source = datasetToSource(                                                                   
+#          dataset_user,
+#          dataset_name,
+#          dataset_files,
+#)
 
-# process.source = cms.Source("PoolSource",
-#                             fileNames = cms.untracked.vstring("file:root://cms-xrd-global.cern.ch//store/mc/RunIISummer16MiniAODv2/SUSYGluGluToBBHToTauTau_M-1000_TuneCUETP8M1_13TeV-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/50000/4C466283-6BC0-E611-B3AE-001517FB25E4.root")
-# #                            fileNames = cms.untracked.vstring("file:VBF.root")
-# #                            fileNames = cms.untracked.vstring("file:localTestFile_DY.root")
-#                            )
+process.source = cms.Source("PoolSource",
+                             fileNames = cms.untracked.vstring("file:root://cms-xrd-global.cern.ch//store/mc/RunIISummer16MiniAODv2/SUSYGluGluToBBHToTauTau_M-1000_TuneCUETP8M1_13TeV-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/50000/4C466283-6BC0-E611-B3AE-001517FB25E4.root")
+#                            fileNames = cms.untracked.vstring("file:VBF.root")
+#                            fileNames = cms.untracked.vstring("file:localTestFile_DY.root")
+                            )
 
 process.options = cms.untracked.PSet(
     allowUnscheduled=cms.untracked.bool(True)
@@ -167,6 +167,10 @@ process.load('RecoMET.METFilters.BadChargedCandidateFilter_cfi')
 process.BadChargedCandidateFilter.muons = cms.InputTag("slimmedMuons")
 process.BadChargedCandidateFilter.PFCandidates = cms.InputTag("packedPFCandidates")
 process.BadChargedCandidateFilter.taggingMode = cms.bool(True)
+process.load('RecoMET.METFilters.badGlobalMuonTaggersMiniAOD_cff')
+process.badGlobalMuonTaggerMAOD.taggingMode = cms.bool(True)
+process.cloneGlobalMuonTaggerMAOD.taggingMode = cms.bool(True)
+
 #########################################################
 fName = "Summer16_23Sep2016HV4_DATA_UncertaintySources_AK4PFchs.txt"
 process.mod = cms.EDProducer(
@@ -180,8 +184,7 @@ process.mod = cms.EDProducer(
 if not isData:
     process.genEvtWeightsCounterPath = cms.Path(process.genEvtWeightsCounter)
     #process.schedule.insert(0, process.genEvtWeightsCounterPath)
-process.p = cms.Path(process.eventDiLeptonFilter*process.METCorrSignificance*process.BadChargedCandidateFilter*process.BadPFMuonFilter*process.mod)
-
+process.p = cms.Path(process.eventDiLeptonFilter*process.METCorrSignificance*process.BadChargedCandidateFilter*process.badGlobalMuonTaggerMAOD*process.cloneGlobalMuonTaggerMAOD*process.BadPFMuonFilter*process.mod)
 ## logger
 process.load('FWCore.MessageLogger.MessageLogger_cfi')
 process.MessageLogger.cerr.FwkReport.reportEvery = 10

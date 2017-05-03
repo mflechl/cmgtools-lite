@@ -29,10 +29,10 @@ def getSequence(isData):
   jetAna.jetEta = 4.7
 
   jetAna.mcGT   = "Summer16_23Sep2016V4_MC"
-  jetAna.dataGT = "Summer16_23Sep2016BCDV4_DATA"
+  # jetAna.dataGT = "Summer16_23Sep2016BCDV4_DATA"
   # jetAna.dataGT = "Summer16_23Sep2016EFV4_DATA"
   # jetAna.dataGT = "Summer16_23Sep2016GV4_DATA"
-  # jetAna.dataGT = "Summer16_23Sep2016HV4_DATA"
+  jetAna.dataGT = "Summer16_23Sep2016HV4_DATA"
   jetAna.do_mc_match = True
   jetAna.smearJets = False #should be false in susycore, already                                      
   jetAna.calculateSeparateCorrections = True 
@@ -205,23 +205,18 @@ def getSequence(isData):
   return sequence
 
 
-####################### FOR TESTING ###############################                
-#from CMGTools.RootTools.samples.samples_13TeV_test import *
-#comp = VBF
-#comp.files = ['root://cms-xrd-global.cern.ch//store/user/mspanrin/VBFHToTauTau_M125_13TeV_powheg_pythia8/VBFHToTauTau_M125_powheg_MCSummer16_170222/170221_232256/0000/outfile_newMVA_13.root']
-#print comp.files
-#selectedComponents = [comp]
-#if comp.isData:
-#    metFilter.processName = "RECO"
-#else:
-#    metFilter.processName = "PAT" 
-#     comp.splitFactor = 250
-#     comp.puFileData = '../MyDataPileupHistogram_observed_new.root'
-#     comp.puFileMC = '../MyMCPileupHistogram_normOfficial.root'
-###################################################################   
+#if __name__ == 'main':
+####### FOR TESTING ###############################                
+# from CMGTools.RootTools.samples.samples_13TeV_test import *
+# comp = VBF
+# comp.files = ['root://cms-xrd-global.cern.ch//store/user/mspanrin/SUSYGluGluToBBHToTauTau_M-1000_TuneCUETP8M1_13TeV-pythia8/SUSYGluGluToBBHToTauTau_M_1000_pythia8_MCSummer16_1704241424/170424_122708/0000/outfile_newMVA_4.root']
+# print comp.files
+# selectedComponents = [comp]
 
 # from PhysicsTools.HeppyCore.framework.eventsfwlite import Events
 # config = cfg.Config( components = selectedComponents,
 #                      sequence = getSequence( comp.isData ) ,
 #                      services = [],
 #                      events_class = Events)
+
+
